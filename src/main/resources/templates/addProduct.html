@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<body>
+
+<h2>Add Product Page</h2>
+<label for="productname">--product name:--------------</label>
+<label for="productcategoryname">product category name:------</label>
+     <label for="productprice">product price:</label>
+
+<form action="">
+<div class='input-form'>
+  <input type="text" id="productname" name="productname_1" value="">
+     <input type="text" id="productcategoryname" name="productcategoryname_1" value="">
+   <input type="text" id="productprice" name="productprice_1" value="">
+   </div>
+   <input type="submit" value="Submit">
+ </form> 
+
+<input type='button' id='but_add' value='Add new'>
+
+<script>
+$(document).ready(function(){
+ 
+ $('#but_add').click(function(){
+
+  // Selecting last id 
+  var lastname_id = $('.input-form input[type=text]:nth-child(1)').last().attr('id');
+  var split_id = lastname_id.split('_');
+
+  // New index
+  var index = Number(split_id[1]) + 1;
+
+  // Create clone
+  var newel = $('.input-form:last').clone(true);
+
+  // Set id of new element
+  $(newel).find('input[type=text]:nth-child(1)').attr("id","productname_"+index);
+  $(newel).find('input[type=text]:nth-child(2)').attr("id","productcategoryname_"+index);
+  $(newel).find('input[type=text]:nth-child(3)').attr("id","productprice_"+index);
+  
+  // Set value
+  $(newel).find('input[type=text]:nth-child(1)').val();
+  $(newel).find('input[type=text]:nth-child(2)').val();
+  $(newel).find('input[type=text]:nth-child(3)').val();
+  
+  // Insert element
+  $(newel).insertAfter(".input-form:last");
+ });
+
+});
+
+</script>
+</body>
+</html>

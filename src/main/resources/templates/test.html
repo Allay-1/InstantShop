@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Allay- Local Service Stores</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/homepage_style.css}"/>
+</head>
+<body>
+
+<div id="header_wrapper">
+ <div id="header">
+ <li id="sitename"><a>A L L A Y</a></li>
+ <form method="post" th:action="@{/shopSignup}" th:object="${signup}">
+ <li>Email or Phone<br><input type="text" th:field="*{username}" name="username"></li>
+ <li>Password<br><input type="password" th:field="*{password}" name="password"><br><a href="">Forgotten account?</a></li>
+ <li><input type="submit" name="login" value="Log In"></li>
+ </form>
+ </div>
+</div>
+
+<div id="wrapper">
+
+<div id="div1">
+<p>Allay helps you connect nearest customers <br>& suppliers and also become as a vendor <br>in your area</p>
+</div>
+
+<div id="div2">
+<h1>Create an account</h1>
+<p>It's free and always will be.</p>
+<form action="#" th:action="@{/user/createUser}" th:object="${createBusinessUserDTO}" method="post" enctype="Content-Type:application/json">
+<li><input type="text" th:field="*{shopName}" placeholder="Shop Name" id="shopname"><input type="text" th:field="*{lastOwnerName}"placeholder="Owner Name" id="ownername"></li>
+<li><input type="text" th:field="*{zipCode}"placeholder="Zipcode" id="zipcode"><input type="text" th:field="*{shoptype}"placeholder="Shoptype" id="shoptype"></li>
+<li><input type="text" th:field="*{shopOwnerEmailId}" placeholder="email address" id="username"></li>
+<li><input type="text" th:field="*{phoneNnumber}" placeholder="Mobile number" id="mobilenumber"></li>
+<li><input type="text" th:field="*{shopAddress}" placeholder="Enter your complete address" id="address"></li>
+<li><input type="text" th:field="*{paymentPreference}" placeholder="payment" id="payment"></li>
+<li><input type="password" th:field="*{password}"placeholder="New password" id="password"><input type="password" th:field="*{confirmpassword}"placeholder="Confirm password"id="confirmpassword"></li>
+<li id="terms">By clicking Create an account, you agree to our Terms and that <br>you have read our Data Policy, including our Cookie Use.</li>
+<li><input type="submit" value="Create an account"></li>
+</form>
+</div>
+
+
+</div>
+
+<div id="footer_wrapper">
+<div id="footer2">
+<a href="">Find Shop</a><a href="">Instagram</a><a href="">Facebook</a><a href="">Twitter</a><a href="">About</a><a href="">Developers</a><a href="">Careers</a><a href="">Privacy</a><a href="">Cookies</a><a href="">Terms</a><a href="">Help</a>
+</div>
+</div>
+</body>
+</html>

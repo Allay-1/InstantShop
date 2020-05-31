@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add user</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+
+
+<form action="#" th:action="@{/user/createUser}" th:object="${createBusinessUserDTO}" method="post" enctype="Content-Type:application/json">
+   
+   <div align="center">
+   <h2>Register User</h2>
+     <p>
+        Enter Your Shop Name: <input type="text" th:field="*{shopName}"> --
+     </p>
+     <p>
+        Last Name of Shop Owner: <input type="text" th:field="*{lastOwnerName}"> --
+     </p>
+     <p>
+        Shop Address: <input type="text" th:field="*{shopAddress}"> --
+     </p>
+       <p>
+        Zip Code: <input type="text" th:field="*{zipCode}"> ----
+       </p>
+        <p>
+        Phone No: <input type="text" th:field="*{shopOwnerEmailId}">
+      </p>
+       <p>
+        Last Owner Email: <input type="text" th:field="*{phoneNnumber}"> --
+      </p>
+     
+      <p>
+        Payment reference: <input type="text" th:field="*{paymentPreference}"> --
+      </p>
+     <p>
+     
+     <p>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset">
+    </p>
+            
+    </div>
+</form>
+
+</body>
+</html>
+
+	

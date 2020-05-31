@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+  <title>Allay- Local Service Stores</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+ <link rel="stylesheet" type="text/css" th:href="@{/css/s_bootstrap.min.css}"/>
+ <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+  
+<script>
+function validsearch()
+{
+if (document.form.category.value == "none" )
+{
+alert ( "Please enter the store type such as Grocery" );
+document.form.category.focus();
+return false;
+}
+
+if (document.form.postalcode.value == "" )
+{
+alert ( "Please enter the valid postal code such as 110074" );
+document.form.postalcode.focus();
+return false;
+}
+}
+function onlyNumberKey(evt) { 
+    
+    // Only ASCII charactar in that range allowed 
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode 
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) 
+        return false; 
+    return true; 
+} 
+
+</script>
+</head>
+<body>
+
+  <div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/startPage"><b>A l l a y</b></a>
+      </div>
+           <ul class="nav navbar-nav navbar-right">
+          <li><a href="/user/createUser"><b>Register Yourself as Professional</b></a>
+          </ul>
+     </div>
+  </div>
+  <div id="headerwrap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1><b>Find local service stores for whatever you <br>need
+					 </b></h1>
+
+
+ <form class="form-inline" name="form" id="myForm" method="post" th:action="@{/startPage}" th:object="${start}"> 
+            <div class="form-group">
+                    
+          <select option="category" name="category" th:field="*{category}" value="" class="form-control" placeholder="eg.Grocery,Medicine,Food"  id="category">
+            <option value="none"> 
+          Select an Option 
+      </option>
+        <option value="Grocery">Grocery</option> 
+        <option value="Medical">Medical</option> 
+        <option value="Food">Food</option> 
+        <option value="Stationary">Stationary</option> 
+             </select>
+          <input type="text" name="postalcode" th:field="*{postalcode}" onkeypress="return onlyNumberKey(event)" maxlength="11"  value="" class="form-control" id="postalcode" placeholder="postalcode">
+            </div>
+           <input type="submit" name="submit" value="Continue" th:onclick="return validsearch();">
+          </form>
+           </div>
+          <div class="col-lg-6">
+       <img class="img-responsive" src="/img/ipad-hand.png" alt=""> 
+          </div>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

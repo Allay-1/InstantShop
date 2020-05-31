@@ -1,0 +1,62 @@
+2020-05-31 13:30:43 - Starting BazarbalaAdminApplication on amitabhs-MacBook-Air.local with PID 13674 (/Users/amitabhsinha/Desktop/projects/InstantShop/target/classes started by amitabhsinha in /Users/amitabhsinha/Desktop/projects/InstantShop)
+2020-05-31 13:30:43 - No active profile set, falling back to default profiles: default
+2020-05-31 13:30:43 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-05-31 13:30:43 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-05-31 13:30:45 - Tomcat initialized with port(s): 8091 (http)
+2020-05-31 13:30:45 - Initializing ProtocolHandler ["http-nio-8091"]
+2020-05-31 13:30:45 - Starting service [Tomcat]
+2020-05-31 13:30:45 - Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-05-31 13:30:45 - Initializing Spring embedded WebApplicationContext
+2020-05-31 13:30:45 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-05-31 13:30:45 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-05-31 13:30:45 - Root WebApplicationContext: initialization completed in 1724 ms
+2020-05-31 13:30:45 - Root WebApplicationContext: initialization completed in 1724 ms
+2020-05-31 13:30:46 - Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-05-31 13:30:46 - 11 mappings in 'requestMappingHandlerMapping'
+2020-05-31 13:30:46 - 11 mappings in 'requestMappingHandlerMapping'
+2020-05-31 13:30:46 - Adding welcome page: class path resource [static/index.html]
+2020-05-31 13:30:46 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-05-31 13:30:46 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-05-31 13:30:46 - LiveReload server is running on port 35729
+2020-05-31 13:30:46 - Starting ProtocolHandler ["http-nio-8091"]
+2020-05-31 13:30:46 - Tomcat started on port(s): 8091 (http) with context path ''
+2020-05-31 13:30:46 - Started BazarbalaAdminApplication in 2.968 seconds (JVM running for 3.982)
+2020-05-31 13:31:02 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-05-31 13:31:02 - Initializing Servlet 'dispatcherServlet'
+2020-05-31 13:31:02 - Initializing Servlet 'dispatcherServlet'
+2020-05-31 13:31:02 - Detected StandardServletMultipartResolver
+2020-05-31 13:31:02 - Detected StandardServletMultipartResolver
+2020-05-31 13:31:02 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2020-05-31 13:31:02 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2020-05-31 13:31:02 - Completed initialization in 7 ms
+2020-05-31 13:31:02 - Completed initialization in 7 ms
+2020-05-31 13:31:02 - GET "/startPage", parameters={}
+2020-05-31 13:31:02 - GET "/startPage", parameters={}
+2020-05-31 13:31:02 - Mapped to com.bzbala.ad.bazarbala.controller.MyController#sendForm2(Start)
+2020-05-31 13:31:02 - Mapped to com.bzbala.ad.bazarbala.controller.MyController#sendForm2(Start)
+2020-05-31 13:31:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-05-31 13:31:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - GET "/css/s_bootstrap.min.css", parameters={}
+2020-05-31 13:31:03 - GET "/css/s_bootstrap.min.css", parameters={}
+2020-05-31 13:31:03 - GET "/css/style.css", parameters={}
+2020-05-31 13:31:03 - GET "/css/style.css", parameters={}
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - GET "/img/ipad-hand.png", parameters={}
+2020-05-31 13:31:03 - GET "/img/ipad-hand.png", parameters={}
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-05-31 13:31:03 - Completed 200 OK
+2020-05-31 13:31:03 - Completed 200 OK

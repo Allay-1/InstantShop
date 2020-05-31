@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show message</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+
+<div align="center">
+
+                             <h2>Welcome Dear Customer, your : <p th:text="'Customer id: ' + ${createBusinessUserDTO.customerId}"> 
+                              <p th:text="'AND Shop webasite URL: http:localhost:8091/ ' + ${createBusinessUserDTO.customerId}"> </h2>
+
+
+			 
+		     <a href="/user/createUser">Submit another message</a>
+																																																													
+</div>
+  
+</body>
+</html>
