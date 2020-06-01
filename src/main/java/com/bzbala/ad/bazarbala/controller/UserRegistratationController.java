@@ -19,35 +19,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserRegistratationController {
-	
-	
+
 	@Autowired
 	AdminServices adminServices;
-	
-	    @GetMapping("/user/createUser")
-	    public String getUser(CreateBusinessUserDTO createBusinessUserDTO) {
-	    	return "shopSignup";
-	    }
 
-	    @PostMapping(value = "/user/createUser", produces = MediaType.APPLICATION_JSON_VALUE)
-	    public String createUser(CreateBusinessUserDTO createBusinessUserDTO) {
-	    	
-	    	BazarBalaError message = null;
-	    	
-	    	 if(adminServices.creteBusinessUser(createBusinessUserDTO)){
-		        message = new BazarBalaError(HttpStatus.OK);
-		        message.setMessage("Company has been Successfully created with company ID : "+createBusinessUserDTO.getCustomerId()+ " .Pleae keep it secert and use as master admin.");
-		        //return new ResponseEntity(message, HttpStatus.OK);
-		        return "shopSignup";
-		       }
-		       else{
-		        message = new BazarBalaError(HttpStatus.OK);
-		        message.setMessage("Error While Creating a Company. Please contact to Admin. ");
-		        //return new ResponseEntity(message, HttpStatus.OK);
-		        
-		        return "successMessage";
-		       }
-	    
-	    }
+	@GetMapping("/user/createUser")
+	public String getUser(CreateBusinessUserDTO createBusinessUserDTO) {
+		return "shopSignup";
+	}
+
+	@PostMapping(value = "/user/createUser", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String createUser(CreateBusinessUserDTO createBusinessUserDTO) {
+
+		BazarBalaError message = null;
+
+		if (adminServices.creteBusinessUser(createBusinessUserDTO)) {
+			message = new BazarBalaError(HttpStatus.OK);
+			message.setMessage("Company has been Successfully created with company ID : "
+					+ createBusinessUserDTO.getCustomerId() + " .Pleae keep it secert and use as master admin.");
+			// return new ResponseEntity(message, HttpStatus.OK);
+			return "shopSignup";
+		} else {
+			message = new BazarBalaError(HttpStatus.OK);
+			message.setMessage("Error While Creating a Company. Please contact to Admin. ");
+			// return new ResponseEntity(message, HttpStatus.OK);
+
+			return "successMessage";
+		}
+
+	}
 
 }

@@ -13,31 +13,27 @@ import com.bzbala.ad.bazarbala.util.BazarbalaUtil;
 
 @Service
 public class AdminServicesImpl implements AdminServices {
-	
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	
-	@Autowired
-    private AdminServices adminDBOperations;
-	@Autowired
-    private DBServices dbOperations;
 
-	
-	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private DBServices dbOperations;
+
 	public boolean creteBusinessUser(CreateBusinessUserDTO createBusinessUserDTO) {
-			
+
 		createBusinessUserDTO.setCustomerId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
 		createBusinessUserDTO.setShopId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
-		createBusinessUserDTO.setShopOwnerPwd(BazarbalaUtil.generatePwdEnc(createBusinessUserDTO.getShopOwnerEmailId()));
+		createBusinessUserDTO
+				.setShopOwnerPwd(BazarbalaUtil.generatePwdEnc(createBusinessUserDTO.getShopOwnerEmailId()));
 		boolean rsStatus = false;
-		
+
 		try {
 			rsStatus = dbOperations.creteBusinessUser(createBusinessUserDTO);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.info("SOMETHING WENT WRONG IN BACKEND CALL");
 		}
-		
+
 		return rsStatus;
-	
-   }
+
+	}
 }

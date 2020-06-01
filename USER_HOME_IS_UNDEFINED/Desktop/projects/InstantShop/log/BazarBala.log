@@ -1,62 +1,216 @@
-2020-05-31 13:30:43 - Starting BazarbalaAdminApplication on amitabhs-MacBook-Air.local with PID 13674 (/Users/amitabhsinha/Desktop/projects/InstantShop/target/classes started by amitabhsinha in /Users/amitabhsinha/Desktop/projects/InstantShop)
-2020-05-31 13:30:43 - No active profile set, falling back to default profiles: default
-2020-05-31 13:30:43 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2020-05-31 13:30:43 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2020-05-31 13:30:45 - Tomcat initialized with port(s): 8091 (http)
-2020-05-31 13:30:45 - Initializing ProtocolHandler ["http-nio-8091"]
-2020-05-31 13:30:45 - Starting service [Tomcat]
-2020-05-31 13:30:45 - Starting Servlet engine: [Apache Tomcat/9.0.33]
-2020-05-31 13:30:45 - Initializing Spring embedded WebApplicationContext
-2020-05-31 13:30:45 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2020-05-31 13:30:45 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
-2020-05-31 13:30:45 - Root WebApplicationContext: initialization completed in 1724 ms
-2020-05-31 13:30:45 - Root WebApplicationContext: initialization completed in 1724 ms
-2020-05-31 13:30:46 - Initializing ExecutorService 'applicationTaskExecutor'
-2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2020-05-31 13:30:46 - 11 mappings in 'requestMappingHandlerMapping'
-2020-05-31 13:30:46 - 11 mappings in 'requestMappingHandlerMapping'
-2020-05-31 13:30:46 - Adding welcome page: class path resource [static/index.html]
-2020-05-31 13:30:46 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2020-05-31 13:30:46 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
-2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2020-05-31 13:30:46 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
-2020-05-31 13:30:46 - LiveReload server is running on port 35729
-2020-05-31 13:30:46 - Starting ProtocolHandler ["http-nio-8091"]
-2020-05-31 13:30:46 - Tomcat started on port(s): 8091 (http) with context path ''
-2020-05-31 13:30:46 - Started BazarbalaAdminApplication in 2.968 seconds (JVM running for 3.982)
-2020-05-31 13:31:02 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-05-31 13:31:02 - Initializing Servlet 'dispatcherServlet'
-2020-05-31 13:31:02 - Initializing Servlet 'dispatcherServlet'
-2020-05-31 13:31:02 - Detected StandardServletMultipartResolver
-2020-05-31 13:31:02 - Detected StandardServletMultipartResolver
-2020-05-31 13:31:02 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2020-05-31 13:31:02 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2020-05-31 13:31:02 - Completed initialization in 7 ms
-2020-05-31 13:31:02 - Completed initialization in 7 ms
-2020-05-31 13:31:02 - GET "/startPage", parameters={}
-2020-05-31 13:31:02 - GET "/startPage", parameters={}
-2020-05-31 13:31:02 - Mapped to com.bzbala.ad.bazarbala.controller.MyController#sendForm2(Start)
-2020-05-31 13:31:02 - Mapped to com.bzbala.ad.bazarbala.controller.MyController#sendForm2(Start)
-2020-05-31 13:31:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
-2020-05-31 13:31:02 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - GET "/css/s_bootstrap.min.css", parameters={}
-2020-05-31 13:31:03 - GET "/css/s_bootstrap.min.css", parameters={}
-2020-05-31 13:31:03 - GET "/css/style.css", parameters={}
-2020-05-31 13:31:03 - GET "/css/style.css", parameters={}
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - GET "/img/ipad-hand.png", parameters={}
-2020-05-31 13:31:03 - GET "/img/ipad-hand.png", parameters={}
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
-2020-05-31 13:31:03 - Completed 200 OK
-2020-05-31 13:31:03 - Completed 200 OK
+2020-06-01 00:02:39 - Error while adding Customer org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar []; nested exception is java.sql.SQLException: Column count doesn't match value count at row 1
+2020-06-01 00:02:39 - SOMETHING WENT WRONG IN BACKEND CALL
+2020-06-01 00:02:39 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:02:39 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:02:39 - Completed 200 OK
+2020-06-01 00:02:39 - Completed 200 OK
+2020-06-01 00:04:06 - Starting BazarbalaAdminApplication on amitabhs-MacBook-Air.local with PID 5630 (/Users/amitabhsinha/Desktop/projects/InstantShop/target/classes started by amitabhsinha in /Users/amitabhsinha/Desktop/projects/InstantShop)
+2020-06-01 00:04:06 - No active profile set, falling back to default profiles: default
+2020-06-01 00:04:06 - The Class-Path manifest attribute in /Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2020-06-01 00:04:06 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-01 00:04:06 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-01 00:04:07 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-06-01 00:04:07 - Finished Spring Data repository scanning in 20ms. Found 0 JPA repository interfaces.
+2020-06-01 00:04:08 - Tomcat initialized with port(s): 8091 (http)
+2020-06-01 00:04:08 - Initializing ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:04:08 - Starting service [Tomcat]
+2020-06-01 00:04:08 - Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 00:04:08 - Initializing Spring embedded WebApplicationContext
+2020-06-01 00:04:08 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-06-01 00:04:08 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-06-01 00:04:08 - Root WebApplicationContext: initialization completed in 1836 ms
+2020-06-01 00:04:08 - Root WebApplicationContext: initialization completed in 1836 ms
+2020-06-01 00:04:08 - HikariPool-1 - Starting...
+2020-06-01 00:04:08 - HikariPool-1 - Start completed.
+2020-06-01 00:04:09 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-06-01 00:04:09 - HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-06-01 00:04:09 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-06-01 00:04:09 - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-06-01 00:04:09 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-06-01 00:04:09 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-06-01 00:04:10 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-06-01 00:04:10 - Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-01 00:04:10 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-06-01 00:04:10 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-06-01 00:04:10 - 11 mappings in 'requestMappingHandlerMapping'
+2020-06-01 00:04:10 - 11 mappings in 'requestMappingHandlerMapping'
+2020-06-01 00:04:10 - Adding welcome page: class path resource [static/index.html]
+2020-06-01 00:04:10 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-06-01 00:04:10 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-06-01 00:04:10 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-06-01 00:04:10 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-06-01 00:04:10 - LiveReload server is running on port 35729
+2020-06-01 00:04:10 - Starting ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:04:10 - Tomcat started on port(s): 8091 (http) with context path ''
+2020-06-01 00:04:10 - Started BazarbalaAdminApplication in 4.799 seconds (JVM running for 6.182)
+2020-06-01 00:04:26 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-06-01 00:04:26 - Initializing Servlet 'dispatcherServlet'
+2020-06-01 00:04:26 - Initializing Servlet 'dispatcherServlet'
+2020-06-01 00:04:26 - Detected StandardServletMultipartResolver
+2020-06-01 00:04:26 - Detected StandardServletMultipartResolver
+2020-06-01 00:04:26 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2020-06-01 00:04:26 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2020-06-01 00:04:26 - Completed initialization in 24 ms
+2020-06-01 00:04:26 - Completed initialization in 24 ms
+2020-06-01 00:04:26 - GET "/user/createUser", parameters={}
+2020-06-01 00:04:26 - GET "/user/createUser", parameters={}
+2020-06-01 00:04:26 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#getUser(CreateBusinessUserDTO)
+2020-06-01 00:04:26 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#getUser(CreateBusinessUserDTO)
+2020-06-01 00:04:26 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-06-01 00:04:26 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-06-01 00:04:27 - Completed 200 OK
+2020-06-01 00:04:27 - Completed 200 OK
+2020-06-01 00:04:27 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:27 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:27 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:27 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:27 - Completed 200 OK
+2020-06-01 00:04:27 - Completed 200 OK
+2020-06-01 00:04:50 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:04:50 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:04:50 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:04:50 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:04:50 - Executing prepared SQL update
+2020-06-01 00:04:50 - Executing prepared SQL update
+2020-06-01 00:04:50 - Executing prepared SQL statement
+2020-06-01 00:04:50 - Executing prepared SQL statement
+2020-06-01 00:04:50 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:04:50 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:04:50 - Completed 200 OK
+2020-06-01 00:04:50 - Completed 200 OK
+2020-06-01 00:04:50 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:50 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:50 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:50 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:50 - Completed 200 OK
+2020-06-01 00:04:50 - Completed 200 OK
+2020-06-01 00:04:55 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:04:55 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:04:55 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:04:55 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:04:55 - Executing prepared SQL update
+2020-06-01 00:04:55 - Executing prepared SQL update
+2020-06-01 00:04:55 - Executing prepared SQL statement
+2020-06-01 00:04:55 - Executing prepared SQL statement
+2020-06-01 00:04:55 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:04:55 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:04:55 - Completed 200 OK
+2020-06-01 00:04:55 - Completed 200 OK
+2020-06-01 00:04:55 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:55 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:04:55 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:55 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:04:55 - Completed 200 OK
+2020-06-01 00:04:55 - Completed 200 OK
+2020-06-01 00:11:05 - Starting BazarbalaAdminApplication on amitabhs-MacBook-Air.local with PID 5636 (/Users/amitabhsinha/Desktop/projects/InstantShop/target/classes started by amitabhsinha in /Users/amitabhsinha/Desktop/projects/InstantShop)
+2020-06-01 00:11:05 - No active profile set, falling back to default profiles: default
+2020-06-01 00:11:05 - The Class-Path manifest attribute in /Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jaxb-runtime-2.3.2.jar referenced one or more files that do not exist: file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.xml.bind-api-2.3.2.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/txw2-2.3.2.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/istack-commons-runtime-3.0.8.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/stax-ex-1.8.1.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/FastInfoset-1.2.16.jar,file:/Users/amitabhsinha/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.2/jakarta.activation-api-1.2.1.jar
+2020-06-01 00:11:05 - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2020-06-01 00:11:05 - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2020-06-01 00:11:06 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-06-01 00:11:06 - Finished Spring Data repository scanning in 21ms. Found 0 JPA repository interfaces.
+2020-06-01 00:11:06 - Tomcat initialized with port(s): 8091 (http)
+2020-06-01 00:11:06 - Initializing ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:11:06 - Starting service [Tomcat]
+2020-06-01 00:11:06 - Starting Servlet engine: [Apache Tomcat/9.0.33]
+2020-06-01 00:11:07 - Initializing Spring embedded WebApplicationContext
+2020-06-01 00:11:07 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-06-01 00:11:07 - Published root WebApplicationContext as ServletContext attribute with name [org.springframework.web.context.WebApplicationContext.ROOT]
+2020-06-01 00:11:07 - Root WebApplicationContext: initialization completed in 1850 ms
+2020-06-01 00:11:07 - Root WebApplicationContext: initialization completed in 1850 ms
+2020-06-01 00:11:07 - HikariPool-1 - Starting...
+2020-06-01 00:11:07 - HikariPool-1 - Start completed.
+2020-06-01 00:11:07 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-06-01 00:11:07 - HHH000412: Hibernate ORM core version 5.4.12.Final
+2020-06-01 00:11:07 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-06-01 00:11:08 - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2020-06-01 00:11:08 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-06-01 00:11:08 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-06-01 00:11:08 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-06-01 00:11:08 - Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-01 00:11:08 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-06-01 00:11:08 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2020-06-01 00:11:08 - 11 mappings in 'requestMappingHandlerMapping'
+2020-06-01 00:11:08 - 11 mappings in 'requestMappingHandlerMapping'
+2020-06-01 00:11:08 - Adding welcome page: class path resource [static/index.html]
+2020-06-01 00:11:08 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-06-01 00:11:08 - Patterns [/webjars/**, /**] in 'resourceHandlerMapping'
+2020-06-01 00:11:08 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-06-01 00:11:08 - ControllerAdvice beans: 0 @ExceptionHandler, 1 ResponseBodyAdvice
+2020-06-01 00:11:08 - Unable to start LiveReload server
+2020-06-01 00:11:08 - Starting ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:11:08 - Pausing ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:11:08 - Stopping service [Tomcat]
+2020-06-01 00:11:08 - Stopping ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:11:08 - Destroying ProtocolHandler ["http-nio-8091"]
+2020-06-01 00:11:08 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-06-01 00:11:08 - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8091 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8091 or configure this application to listen on another port.
+
+2020-06-01 00:11:08 - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-06-01 00:11:08 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-06-01 00:11:08 - HikariPool-1 - Shutdown initiated...
+2020-06-01 00:11:08 - HikariPool-1 - Shutdown completed.
+2020-06-01 00:11:28 - GET "/user/createUser", parameters={}
+2020-06-01 00:11:28 - GET "/user/createUser", parameters={}
+2020-06-01 00:11:28 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#getUser(CreateBusinessUserDTO)
+2020-06-01 00:11:28 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#getUser(CreateBusinessUserDTO)
+2020-06-01 00:11:28 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-06-01 00:11:28 - Selected 'text/html' given [text/html, application/xhtml+xml, image/webp, image/apng, application/xml;q=0.9, application/signed-exchange;v=b3;q=0.9, */*;q=0.8]
+2020-06-01 00:11:28 - Completed 200 OK
+2020-06-01 00:11:28 - Completed 200 OK
+2020-06-01 00:11:28 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:11:28 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:11:28 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:11:28 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:11:28 - Completed 200 OK
+2020-06-01 00:11:28 - Completed 200 OK
+2020-06-01 00:12:33 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:12:33 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:12:33 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:12:33 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:12:33 - Executing prepared SQL update
+2020-06-01 00:12:33 - Executing prepared SQL update
+2020-06-01 00:12:33 - Executing prepared SQL statement
+2020-06-01 00:12:33 - Executing prepared SQL statement
+2020-06-01 00:12:33 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:12:33 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:12:33 - Completed 200 OK
+2020-06-01 00:12:33 - Completed 200 OK
+2020-06-01 00:12:33 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:12:33 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:12:33 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:12:33 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:12:33 - Completed 200 OK
+2020-06-01 00:12:33 - Completed 200 OK
+2020-06-01 00:13:17 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:13:17 - POST "/user/createUser", parameters={masked}
+2020-06-01 00:13:17 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:13:17 - Mapped to com.bzbala.ad.bazarbala.controller.UserRegistratationController#createUser(CreateBusinessUserDTO)
+2020-06-01 00:13:17 - Executing prepared SQL update
+2020-06-01 00:13:17 - Executing prepared SQL update
+2020-06-01 00:13:17 - Executing prepared SQL statement
+2020-06-01 00:13:17 - Executing prepared SQL statement
+2020-06-01 00:13:17 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:13:17 - View remains unresolved given [application/json;q=0.8]
+2020-06-01 00:13:17 - Completed 200 OK
+2020-06-01 00:13:17 - Completed 200 OK
+2020-06-01 00:13:17 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:13:17 - GET "/css/homepage_style.css", parameters={}
+2020-06-01 00:13:17 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:13:17 - Mapped to ResourceHttpRequestHandler ["classpath:/META-INF/resources/", "classpath:/resources/", "classpath:/static/", "classpath:/public/", "/"]
+2020-06-01 00:13:17 - Completed 200 OK
+2020-06-01 00:13:17 - Completed 200 OK
