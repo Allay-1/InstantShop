@@ -3,6 +3,7 @@
 <head>
     <title>Allay- Local Service Stores</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/css/homepage_style.css}"/>
+	
 </head>
 <body>
 
@@ -19,10 +20,10 @@
 
 <div id="wrapper">
 
- <div> <h2> <span th:text="|Welcome to our application, ${createBusinessUserDTO.shopName} ,your accoutn has been creted with us.|"> </h2> </div>
+ 
 
 <div id="div1">
-<p>Allay helps you connect -- shopOwnPwd -- nearest customers <br>& suppliers and also become as a vendor <br>in your area</p>
+<p>Allay helps you connect nearest customers <br>& suppliers and also become as a vendor <br>in your area</p>
 </div>
 
 <div id="div2">
@@ -34,17 +35,17 @@
 <form action="#" th:action="@{/user/createUser}" th:object="${createBusinessUserDTO}" method="post" enctype="Content-Type:application/json">
  
 
-<li> <input type="text" th:field="*{shopName}" placeholder="Shop Name" id="shopname">
-     <input type="text" th:field="*{lastOwnerName}"placeholder="Owner Name" id="ownername"></li>
+<li> <input type="text" th:field="*{shopName}" placeholder="Shop Name" id="shopname" required>
+     <input type="text" th:field="*{lastOwnerName}"placeholder="Owner Name" id="ownername" required></li>
  <li> <input type="text" th:field="*{zipCode}"placeholder="Zipcode" id="zipcode">
-     <input type="text" th:field="*{paymentPreference}"placeholder="Payment Preference" id="paymentPreference"></li>
+     <input type="text" th:field="*{paymentPreference}"placeholder="Payment Preference" id="paymentPreference" required></li>
 
-<li> <input type="text" th:field="*{phoneNnumber}" placeholder="Mobile number" id="username">
-<input type="text" th:field="*{shopCategory}"placeholder="Shop Category" id="shopCategory"></li>
-<li> <input type="text" th:field="*{shopAddress}" placeholder="Shop address" id="address"></li>
-<li> <input type="text" th:field="*{shopOwnerEmailId}"placeholder="Email Address" id="email">
+<li> <input type="text" th:field="*{phoneNnumber}" placeholder="Mobile number" id="username" required>
+<input type="text" th:field="*{shopCategory}"placeholder="Shop Category" id="shopCategory" required></li>
+<li> <input type="text" th:field="*{shopAddress}" placeholder="Shop address" id="address" required></li>
+<li> <input type="text" th:field="*{shopOwnerEmailId}"placeholder="Email Address" id="email" required>
    
-     <input type="password" th:field="*{shopOwnerEmailId}"placeholder="Confirm password"id="confirmpassword"></li>
+     <input type="password" th:field="*{shopOwnerEmailId}"placeholder="Confirm password"id="confirmpassword" required></li>
  
  
     
