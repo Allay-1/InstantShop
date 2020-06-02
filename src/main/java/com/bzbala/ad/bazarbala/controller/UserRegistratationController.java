@@ -22,6 +22,12 @@ public class UserRegistratationController {
 
 	@Autowired
 	AdminServices adminServices;
+	
+	@GetMapping("ux/login")
+	public String loginUser()
+	{
+		return "loginBoth";
+	}
 
 	@GetMapping("/user/createUser")
 	public String getUser(CreateBusinessUserDTO createBusinessUserDTO) {
