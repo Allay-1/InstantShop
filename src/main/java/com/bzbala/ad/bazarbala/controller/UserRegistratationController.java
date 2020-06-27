@@ -1,20 +1,25 @@
 package com.bzbala.ad.bazarbala.controller;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-
-import com.bzbala.ad.bazarbala.dto.CreateBusinessUserDTO;
-import com.bzbala.ad.bazarbala.dto.User;
-import com.bzbala.ad.bazarbala.exception.BazarBalaError;
+import com.bzbala.ad.bazarbala.dto.InstantShopCustomer;
+import com.bzbala.ad.bazarbala.dto.InstantShopSupplier;
+import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
+import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.services.AdminServices;
-
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.bzbala.ad.bazarbala.validator.RequestValidator;
 
 
 @Controller
@@ -23,34 +28,87 @@ public class UserRegistratationController {
 	@Autowired
 	AdminServices adminServices;
 	
+	@Autowired
+	RequestValidator requestValidator;
+	
 	@GetMapping("ux/login")
 	public String loginUser()
 	{
 		return "loginBoth";
 	}
 
-	@GetMapping("/user/createUser")
-	public String getUser(CreateBusinessUserDTO createBusinessUserDTO) {
-		return "shopSignup";
+	@GetMapping("/user/customerlogin")
+	public String getCustomerUser(InstantShopSupplier createBusinessUserDTO) {
+		return "shopCustomerSignup";
 	}
-
-	@PostMapping(value = "/user/createUser", produces = MediaType.APPLICATION_JSON_VALUE)
-	public String createUser(CreateBusinessUserDTO createBusinessUserDTO) {
-
-		BazarBalaError message = null;
-
-		if (adminServices.creteBusinessUser(createBusinessUserDTO)) {
-			message = new BazarBalaError(HttpStatus.OK);
-			message.setMessage("Company has been Successfully created with company ID : "
-					+ createBusinessUserDTO.getCustomerId() + " .Pleae keep it secert and use as master admin.");
-			// return new ResponseEntity(message, HttpStatus.OK);
-			return "shopSignup";
+	
+	@GetMapping("/user/suplierlogin")
+	public String getSuplierUser(InstantShopSupplier createBusinessUserDTO) {
+		return "shopSuplierSignup";
+	}
+    /**
+     * Create the Supplier Account who server the orders
+     * @param createBusinessUserDTO
+     * @return
+     */
+	@PostMapping(value = "/user/signUpSupplier")
+	@ResponseBody
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public Response createSuplier(@RequestBody InstantShopSupplier createBusinessUserDTO) {
+		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+		Result message = null;
+		message=requestValidator.validateSupplierRequest(createBusinessUserDTO);
+		if(!message.isValid()) {
+			return builder.status(Response.Status.BAD_REQUEST).entity(message).build();
+		}
+		message=null;
+		try {
+		message=adminServices.creteSupplier(createBusinessUserDTO);
+		}catch (BazarBalaDAOException bazarBalaDAOException) {
+			message=new Result(HttpStatus.OK,bazarBalaDAOException,false);
+		}
+		if (message.isValid()) {
+			
+			builder.status(Response.Status.OK).entity(message);
+			return builder.build();
 		} else {
-			message = new BazarBalaError(HttpStatus.OK);
-			message.setMessage("Error While Creating a Company. Please contact to Admin. ");
-			// return new ResponseEntity(message, HttpStatus.OK);
+			
+			builder.status(Response.Status.BAD_REQUEST).entity(message);
+			return builder.build();
+		}
 
-			return "successMessage";
+	}
+	
+	/**
+	 * Creating the Customer end point, when customer comes  first time 
+	 * Need to create a account
+	 * @param createBusinessUserDTO
+	 * @return
+	 */
+	@PostMapping(value = "/user/signUPCustomer")
+	@ResponseBody
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public Response createCustomer(@RequestBody InstantShopCustomer createBusinessUserDTO) {
+		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+		Result message = null;
+		message=requestValidator.validateCustomerRequest(createBusinessUserDTO);
+		if(!message.isValid()) {
+			return builder.status(Response.Status.BAD_REQUEST).entity(message).build();
+		}
+		message=null;
+		try {
+		message =adminServices.creteCustomer(createBusinessUserDTO);
+		}catch (BazarBalaDAOException bazarBalaDAOException) {
+			message=new Result(HttpStatus.OK,bazarBalaDAOException,false);
+		}
+		if (message.isValid()) {
+			builder.status(Response.Status.OK).entity(message);
+			return builder.build();
+		} else {
+			builder.status(Response.Status.BAD_REQUEST).entity(message);
+			return builder.build();
 		}
 
 	}

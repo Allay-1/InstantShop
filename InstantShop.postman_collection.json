@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "0f3dd56b-691e-4d5b-a5c3-351d7613efca",
+		"name": "InstantShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8089/user/signUpSupplier",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"19928 Bothel everethh\",\n    \"zipCode\": \"98012\",\n    \"shopName\": \"sunnyMarket\",\n    \"phoneNnumber\": \"4568956666\",\n    \"emailId\": \"amitabhi.sinha@gmail.com\",\n    \"supplierPassword\": \"amitabh\",\n    \"category\": \"Food\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/user/signUpSupplier",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"user",
+						"signUpSupplier"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/user/signUPCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"19928 Bothel everethh\",\n    \"zipCode\": \"98012\",\n    \"firstName\": \"Amitabh\",\n    \"lastName\": \"sinha\",\n    \"phoneNnumber\": \"4256290045\",\n    \"emailId\": \"amitabhi.sinha@gmail.com\",\n    \"customerPwd\": \"amitabh\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/user/signUPCustomer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"user",
+						"signUPCustomer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/availability?zipCode=98012&shopType=all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/supplier/availability?zipCode=98012&shopType=all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"availability"
+					],
+					"query": [
+						{
+							"key": "zipCode",
+							"value": "98012"
+						},
+						{
+							"key": "shopType",
+							"value": "all"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -12,8 +12,6 @@ public class UserReposistory {
 	
 	private String shopAddress;
 	
-	private String shopUrl;
-	
 	private String zipCode;
 
 	public String getShopType() {
@@ -56,13 +54,6 @@ public class UserReposistory {
 		this.shopAddress = shopAddress;
 	}
 
-	public String getShopUrl() {
-		return shopUrl;
-	}
-
-	public void setShopUrl(String shopUrl) {
-		this.shopUrl = shopUrl;
-	}
 
 	public String getZipCode() {
 		return zipCode;

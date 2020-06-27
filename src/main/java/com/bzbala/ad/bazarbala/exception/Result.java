@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class BazarBalaError {
+public class Result {
 	
 	
 	private HttpStatus status;
@@ -17,36 +17,41 @@ public class BazarBalaError {
 	   private Date timestamp;
 	   private String message;
 	   private String debugMessage;
+	   private boolean valid;
 	   private List<BazarBalaSubError> subErrors;
 
 	
 	   
-	   private BazarBalaError() {
+	   private Result() {
 	       timestamp = new Date();
 	   }
 	   
-	   public BazarBalaError(HttpStatus status) {
+	   public Result(HttpStatus status,boolean valid) {
 	       this();
+	       this.valid = valid;
 	       this.status = status;
 	   }
 	   
-	   public BazarBalaError(HttpStatus status, Throwable ex) {
+	   public Result(HttpStatus status, Throwable ex,boolean valid) {
 	       this();
 	       this.status = status;
+	       this.valid = valid;
 	       this.message = "Unexpected error";
 	       this.debugMessage = ex.getLocalizedMessage();
 	   }
 	   
-	   public BazarBalaError(HttpStatus status, String message, Throwable ex) {
+	   public Result(HttpStatus status, String message, Throwable ex,boolean valid) {
 	       this();
 	       this.status = status;
 	       this.message = message;
+	       this.valid = valid;
 	       this.debugMessage = ex.getLocalizedMessage();
 	   }
 	   
-	   public BazarBalaError(HttpStatus status, String message) {
+	   public Result(HttpStatus status, String message,boolean valid) {
 	       this();
 	       this.status = status;
+	       this.valid = valid;
 	       this.message = message;
 	   }
 	   
@@ -89,6 +94,15 @@ public class BazarBalaError {
 
 	public void setSubErrors(List<BazarBalaSubError> subErrors) {
 		this.subErrors = subErrors;
+	}
+    
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
 

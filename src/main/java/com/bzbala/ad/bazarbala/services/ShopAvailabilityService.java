@@ -1,12 +1,15 @@
-package com.bzbala.ad.bazarbala.controller;
+package com.bzbala.ad.bazarbala.services;
 
 import java.util.List;
 import java.util.function.Function;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.bzbala.ad.bazarbala.dao.DBServices;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
@@ -19,10 +22,14 @@ public class ShopAvailabilityService {
 	@Autowired
 	DBServices userService;
 	
-	public List<ShopAvailability>  getShopAvailability(String zipCode,String shopCategory) throws BazarBalaDAOException{
+	@Value("${domain.path}")
+	private String contextPath;
+	
+	public List<ShopAvailability>  getShopAvailability(String zipCode,String shopCategory,HttpServletRequest request) throws BazarBalaDAOException{
 		
-		List<UserReposistory> userReposistory=userService.getBusinessUser(zipCode);
+		List<UserReposistory> userReposistory=userService.getSupplierrDetail(zipCode);
 		List<ShopAvailability> shops = new ArrayList<>();
+		String shopBaseUrl=getURLValue(request);
 		if(userReposistory !=null && !userReposistory.isEmpty()) {
 			
 			shops=userReposistory.stream().map((Function<? super UserReposistory, ? extends ShopAvailability>) user ->{
@@ -33,7 +40,7 @@ public class ShopAvailabilityService {
 				shop.setShopName(user.getShopName());
 				if(user.getShopType()!=null)
 				shop.setShopType(user.getShopType().toString());
-				shop.setShopUrl(user.getShopUrl());
+				shop.setShopUrl(shopBaseUrl+user.getShopName()+"/"+user.getShopId());
 				if(user.getZipCode()!=null)
 				shop.setShopZip(user.getZipCode().toString());
 				return shop;
@@ -42,6 +49,11 @@ public class ShopAvailabilityService {
 		}
 		return shops;
 		
+	}
+	
+	public String getURLValue(HttpServletRequest request){
+	    String hostUrl = contextPath+"supplier/";
+	    return hostUrl;
 	}
 	
 

@@ -1,39 +1,60 @@
 package com.bzbala.ad.bazarbala.services;
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bzbala.ad.bazarbala.constant.APPLICATION_CONSTANTS;
 import com.bzbala.ad.bazarbala.dao.DBServices;
-import com.bzbala.ad.bazarbala.dto.CreateBusinessUserDTO;
+import com.bzbala.ad.bazarbala.dto.Address;
+import com.bzbala.ad.bazarbala.dto.InstantShopCustomer;
+import com.bzbala.ad.bazarbala.dto.InstantShopSupplier;
+import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
+import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.util.BazarbalaUtil;
 
 @Service
 public class AdminServicesImpl implements AdminServices {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
 	@Autowired
 	private DBServices dbOperations;
+    /**
+     * 
+     */
+	@Override
+	public Result creteSupplier(InstantShopSupplier createBusinessUserDTO) throws BazarBalaDAOException {
 
-	public boolean creteBusinessUser(CreateBusinessUserDTO createBusinessUserDTO) {
+		createBusinessUserDTO.setSupplierId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
+		createBusinessUserDTO.setShopId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
+		createBusinessUserDTO.setAddressId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
+		createBusinessUserDTO
+				.setSupplierPassword(BazarbalaUtil.generatePwdEnc(createBusinessUserDTO.getSupplierPassword()));
+		Address address = new Address();
+		address.setAddressId(createBusinessUserDTO.getAddressId());
+		address.setShopAddress(createBusinessUserDTO.getAddress());
+		address.setZipCode(createBusinessUserDTO.getZipCode());
+		address.setId(String.valueOf(createBusinessUserDTO.getSupplierId()));
+		address.setName(createBusinessUserDTO.getShopName());
+
+		return dbOperations.creteBusinessUser(createBusinessUserDTO, address);
+
+	}
+
+	@Override
+	public Result creteCustomer(InstantShopCustomer createBusinessUserDTO) throws BazarBalaDAOException {
 
 		createBusinessUserDTO.setCustomerId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
-		createBusinessUserDTO.setShopId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
-		createBusinessUserDTO
-				.setShopOwnerPwd(BazarbalaUtil.generatePwdEnc(createBusinessUserDTO.getShopOwnerEmailId()));
-		boolean rsStatus = false;
+		createBusinessUserDTO.setHomeId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
+		createBusinessUserDTO.setAddressId(BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.CUSTOMER_ID_LENGHT));
+		createBusinessUserDTO.setCustomerPwd(BazarbalaUtil.generatePwdEnc(createBusinessUserDTO.getCustomerPwd()));
 
-		try {
-			rsStatus = dbOperations.creteBusinessUser(createBusinessUserDTO);
-		} catch (Exception e) {
-			logger.info("SOMETHING WENT WRONG IN BACKEND CALL");
-		}
-
-		return rsStatus;
+		Address address = new Address();
+		address.setAddressId(createBusinessUserDTO.getAddressId());
+		address.setShopAddress(createBusinessUserDTO.getAddress());
+		address.setZipCode(createBusinessUserDTO.getZipCode());
+		address.setId(String.valueOf(createBusinessUserDTO.getCustomerId()));
+		address.setName(createBusinessUserDTO.getFirstName());
+		return dbOperations.creteCustomerUser(createBusinessUserDTO, address);
 
 	}
 }
