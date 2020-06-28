@@ -1,5 +1,6 @@
 package com.bzbala.ad.bazarbala.controller;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bzbala.ad.bazarbala.dto.AuthenticationRequest;
 import com.bzbala.ad.bazarbala.dto.InstantShopCustomer;
 import com.bzbala.ad.bazarbala.dto.InstantShopSupplier;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
@@ -30,6 +32,9 @@ public class UserRegistratationController {
 	
 	@Autowired
 	RequestValidator requestValidator;
+	
+	@Autowired
+	ControllerHelper controllerHelper;
 	
 	@GetMapping("ux/login")
 	public String loginUser()
@@ -55,25 +60,29 @@ public class UserRegistratationController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response createSuplier(@RequestBody InstantShopSupplier createBusinessUserDTO) {
+	public Response createSuplier(@RequestBody InstantShopSupplier createBusinessUserDTO,
+			HttpServletResponse response) {
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Result message = null;
-		message=requestValidator.validateSupplierRequest(createBusinessUserDTO);
-		if(!message.isValid()) {
+		message = requestValidator.validateSupplierRequest(createBusinessUserDTO);
+		if (!message.isValid()) {
 			return builder.status(Response.Status.BAD_REQUEST).entity(message).build();
 		}
-		message=null;
+		message = null;
 		try {
-		message=adminServices.creteSupplier(createBusinessUserDTO);
-		}catch (BazarBalaDAOException bazarBalaDAOException) {
-			message=new Result(HttpStatus.OK,bazarBalaDAOException,false);
+			message = adminServices.creteSupplier(createBusinessUserDTO);
+		} catch (BazarBalaDAOException bazarBalaDAOException) {
+			message = new Result(HttpStatus.OK, bazarBalaDAOException, false);
 		}
 		if (message.isValid()) {
-			
+			AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+			authenticationRequest.setPassword(createBusinessUserDTO.getSupplierPassword());
+			authenticationRequest.setPhoneNo(createBusinessUserDTO.getPhoneNnumber());
+			controllerHelper.createToken(authenticationRequest, response);
 			builder.status(Response.Status.OK).entity(message);
 			return builder.build();
 		} else {
-			
+
 			builder.status(Response.Status.BAD_REQUEST).entity(message);
 			return builder.build();
 		}
@@ -90,20 +99,26 @@ public class UserRegistratationController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response createCustomer(@RequestBody InstantShopCustomer createBusinessUserDTO) {
+	public Response createCustomer(@RequestBody InstantShopCustomer createBusinessUserDTO,
+			HttpServletResponse response) {
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Result message = null;
-		message=requestValidator.validateCustomerRequest(createBusinessUserDTO);
-		if(!message.isValid()) {
+		message = requestValidator.validateCustomerRequest(createBusinessUserDTO);
+		if (!message.isValid()) {
 			return builder.status(Response.Status.BAD_REQUEST).entity(message).build();
 		}
-		message=null;
+		message = null;
 		try {
-		message =adminServices.creteCustomer(createBusinessUserDTO);
-		}catch (BazarBalaDAOException bazarBalaDAOException) {
-			message=new Result(HttpStatus.OK,bazarBalaDAOException,false);
+			message = adminServices.creteCustomer(createBusinessUserDTO);
+		} catch (BazarBalaDAOException bazarBalaDAOException) {
+			message = new Result(HttpStatus.OK, bazarBalaDAOException, false);
 		}
 		if (message.isValid()) {
+			AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+			authenticationRequest.setPassword(createBusinessUserDTO.getCustomerPwd());
+			authenticationRequest.setPhoneNo(createBusinessUserDTO.getPhoneNnumber());
+			controllerHelper.createToken(authenticationRequest, response);
+
 			builder.status(Response.Status.OK).entity(message);
 			return builder.build();
 		} else {
