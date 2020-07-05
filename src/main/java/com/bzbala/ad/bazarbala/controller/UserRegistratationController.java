@@ -9,10 +9,14 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bzbala.ad.bazarbala.dto.AuthenticationRequest;
@@ -23,7 +27,7 @@ import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.services.AdminServices;
 import com.bzbala.ad.bazarbala.validator.RequestValidator;
 
-
+@CrossOrigin(maxAge = 3600)
 @Controller
 public class UserRegistratationController {
 
@@ -51,11 +55,14 @@ public class UserRegistratationController {
 	public String getSuplierUser(InstantShopSupplier createBusinessUserDTO) {
 		return "shopSuplierSignup";
 	}
+	
+
     /**
      * Create the Supplier Account who server the orders
      * @param createBusinessUserDTO
      * @return
      */
+	@CrossOrigin("/**")
 	@PostMapping(value = "/user/signUpSupplier")
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
@@ -95,6 +102,7 @@ public class UserRegistratationController {
 	 * @param createBusinessUserDTO
 	 * @return
 	 */
+	@CrossOrigin("/**")
 	@PostMapping(value = "/user/signUPCustomer")
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)

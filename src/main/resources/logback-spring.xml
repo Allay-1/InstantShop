@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
+<property name="DEV_HOME" value="../log/bazarbala/"></property>
 	<property name="DEV_HOME"
 		value="${USER_HOME}/Desktop/projects/InstantShop/log/"></property>
 
