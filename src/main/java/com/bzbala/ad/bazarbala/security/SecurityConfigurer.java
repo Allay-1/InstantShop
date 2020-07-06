@@ -41,7 +41,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 	
-	String[] publicUrls = new String[] { "/user/auth/v1/authAndCreateToken","/user/signUpSupplier", "/user/signUPCustomer","/supplier/availability" };
+	String[] publicUrls = new String[] { "/user/authAndCreateToken","/user/signUpSupplier", "/user/signUPCustomer","/supplier/availability" };
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

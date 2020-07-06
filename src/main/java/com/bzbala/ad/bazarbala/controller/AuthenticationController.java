@@ -49,39 +49,8 @@ public class AuthenticationController {
 	@Autowired
 	private JwtUtil jwtTokenUtil;
 	
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	
-	   @RequestMapping(value = "/user/auth/v1/User", method = RequestMethod.POST)
-	    public ResponseEntity<Boolean> authenticateUser(@RequestBody AuthUserUserDTO authUserUserDTO) {
-	    	boolean isUpdated = false;
-	    	isUpdated= authenticationServiceObj.authenticateUserSer(authUserUserDTO.getPhoneNo(),authUserUserDTO.getPwdToAuth());
-	        if (!isUpdated) {
-	            return new ResponseEntity(HttpStatus.NO_CONTENT);
-	        }
-	        return new ResponseEntity<>(isUpdated, HttpStatus.OK);
-	    }
-	
 	   
-	   @RequestMapping(value = "/user/auth/v1/loadUser/{userName}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
-	   @ResponseBody
-	    public UserDetails loadUser(@PathVariable String userName) {
-		   
-		   UserDetails userDetails = null;
-		   
-		   try {    	
-			   userDetails = authenticationServiceObj.loadUserByUsername (userName);		   
-		   } catch (BadCredentialsException e) {
-				e.printStackTrace();
-			}
-		   
-	
-		 return userDetails;
-		   
-	   }
-	   
-	@RequestMapping(value = "/user/auth/v1/authAndCreateToken", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/authAndCreateToken", method = RequestMethod.POST)
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
