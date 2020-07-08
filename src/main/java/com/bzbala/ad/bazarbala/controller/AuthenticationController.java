@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.header.Header;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -49,7 +50,7 @@ public class AuthenticationController {
 	@Autowired
 	private JwtUtil jwtTokenUtil;
 	
-	   
+	@CrossOrigin("/**")   
 	@RequestMapping(value = "/user/authAndCreateToken", method = RequestMethod.POST)
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
@@ -58,22 +59,38 @@ public class AuthenticationController {
 		
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Result message = null;
+		if (authenticationRequest.getUserType() != null && !authenticationRequest.getUserType().isEmpty()) {
+			if (!(authenticationRequest.getUserType().equalsIgnoreCase("Customer") || authenticationRequest.getUserType().equalsIgnoreCase("Supplier"))) {
+				message = new Result(HttpStatus.BAD_REQUEST, false);
+				message.setMessage("UserType is not Matching to our record its value should be Customer or Supplier ::"
+						+ authenticationRequest.getUserType());
+				builder.status(Response.Status.BAD_REQUEST).entity(message);
+				return builder.build();
+			}
+		} else {
+			message = new Result(HttpStatus.BAD_REQUEST, false);
+			message.setMessage("UserType is missing in Request ::");
+			builder.status(Response.Status.BAD_REQUEST).entity(message);
+			return builder.build();
+		}
+		
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-					authenticationRequest.getPhoneNo(), BazarbalaUtil.generatePwdEnc(authenticationRequest.getPassword())));
+					authenticationRequest.getPhoneNo()+"_"+authenticationRequest.getUserType(), BazarbalaUtil.generatePwdEnc(authenticationRequest.getPassword())));
 		} catch (BadCredentialsException e) {
 			message = new Result(HttpStatus.OK, e, false);
 			builder.status(Response.Status.BAD_REQUEST).entity(message);
 			return builder.build();
 		}
 
-		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo());
+		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo(),authenticationRequest.getUserType());
 
 		final String jwt = "Bearer " + jwtTokenUtil.generateToken(userDetails);
 		
 		message = new Result(HttpStatus.OK, true);
 		message.setMessage("Success: ");
 		response.addHeader("Authorization", jwt);
+		response.addHeader("User_Type", authenticationRequest.getUserType());
 		builder.status(Response.Status.OK).entity(message);
 		return builder.build();
 	}
@@ -95,7 +112,7 @@ public class AuthenticationController {
 			return message;
 		}
 
-		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo());
+		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo(),authenticationRequest.getUserType());
 
 		final String jwt = "Bearer " + jwtTokenUtil.generateToken(userDetails);
 		

@@ -29,14 +29,14 @@ public class ShopAvailabilityController {
 	ShopAvailabilityService shopAvailabilityService;
 	
 	
+	
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/supplier/availability", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ShopAvailabiltyResponse getShops(@RequestParam String zipCode, @RequestParam String shopType,HttpServletRequest request) throws BazarBalaDAOException {
 		ShopAvailabiltyResponse shopAvailabiltyResponse = new ShopAvailabiltyResponse();
 		List<ShopAvailability> shops = shopAvailabilityService.getShopAvailability(zipCode, shopType,request);
 		shopAvailabiltyResponse.setShops(shops);
-		
-		
 		return shopAvailabiltyResponse;
 	}
 

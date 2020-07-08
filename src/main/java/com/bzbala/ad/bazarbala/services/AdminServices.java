@@ -10,4 +10,8 @@ public interface AdminServices {
 	public Result creteCustomer(InstantShopCustomer createBusinessUserDTO) throws BazarBalaDAOException;
 	
 	public Result creteSupplier(InstantShopSupplier createBusinessUserDTO) throws BazarBalaDAOException;
+	
+	public Result createToken(String phoneNumber,String emailId,String userType) throws BazarBalaDAOException;
+	
+	public Result updatePassword(String token,String password) throws BazarBalaDAOException;
 }
