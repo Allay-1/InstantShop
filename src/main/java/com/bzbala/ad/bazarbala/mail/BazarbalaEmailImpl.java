@@ -80,8 +80,8 @@ public class BazarbalaEmailImpl {
 	    mailSender.setHost("smtp.gmail.com");
 	    mailSender.setPort(587);
 	     
-	    mailSender.setUsername("allay.techie@gmail.com");
-	    mailSender.setPassword("vjfrnngcemnmmjci");
+	    mailSender.setUsername("");
+	    mailSender.setPassword("");
 	     
 	    Properties props = mailSender.getJavaMailProperties();
 	    props.put("mail.transport.protocol", "smtp");
