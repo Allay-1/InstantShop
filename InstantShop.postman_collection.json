@@ -92,6 +92,119 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8089/user/auth/v1/authAndCreateToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phoneNo\": \"4256290045\",\n    \"password\": \"amitabh\",\n    \"userType\":\"Supplier\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/user/authAndCreateToken",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"user",
+						"authAndCreateToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product_code\": \"potato_12345\",\n    \"product_name\": {\n        \"english\": \"podato\",\n        \"Hindi\": \"Aloo\"\n    },\n    \"product_Suplier_Id\": \"shopID\",\n    \"product_Quatity\": 5,\n    \"product_stock\": true,\n    \"product_price\": {\n        \"currency\": \"rupee\",\n        \"sell_price\": 10,\n        \"base_price\": 5,\n        \"product_code\": \"potato_12345\"\n    },\n    \"product_discount\": {\n        \"product_code\": \"potato_12345\",\n        \"country\": \"India\",\n        \"discount\": {\n            \"Bihar\": {\n                \"munger\": {\n                    \"discount\": \"2\"\n                },\n                \"Bhagalpur\": {\n                    \"discount\": \"3\"\n                }\n            },\n            \"Delhi\": {\n                \"katwari\": {\n                    \"discount\": \"2\"\n                },\n                \"hauzkaus\": {\n                    \"discount\": \"3\"\n                }\n            }\n        }\n    },\n    \"product_origin\": \"India\",\n    \"product_category\": {\n        \"image\": \"1234567\",\n        \"english\": \"Vegitable\",\n        \"Hindi\": \"hari sabji\"\n    },\n    \"product_brand\": \"\",\n    \"product_image\": \"potato_12345.jpg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "Test",
+					"host": [
+						"Test"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost8089/user/genrate/passwordToken",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phoneNumber\":\"4256290045\",\n    \"emailId\":\"amitabhi.sinha@gmail.com\",\n    \"userType\":\"Customer\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost8089/user/genrate/passwordToken",
+					"protocol": "http",
+					"host": [
+						"localhost8089"
+					],
+					"path": [
+						"user",
+						"genrate",
+						"passwordToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost8089/user/genrate/password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\":\"454837\",\n    \"password\":\"hello\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost8089/user/genrate/password",
+					"protocol": "http",
+					"host": [
+						"localhost8089"
+					],
+					"path": [
+						"user",
+						"genrate",
+						"password"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

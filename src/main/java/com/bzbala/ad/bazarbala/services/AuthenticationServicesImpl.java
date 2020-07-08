@@ -22,7 +22,7 @@ public class AuthenticationServicesImpl implements AuthenticationService, UserDe
 	
 	
 	@Override
-	public boolean authenticateUserSer(String userId, String pwdToAuth) {
+	public boolean authenticateUserSer(String userId, String pwdToAuth,String userType) {
 		boolean isUpdated = false;
 		try
 		{
@@ -33,11 +33,27 @@ public class AuthenticationServicesImpl implements AuthenticationService, UserDe
 		
 	}
 	@Override
-	public UserDetails loadUserByUsername(String phoneNo) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String phoneNo,String userType) throws UsernameNotFoundException {
 		UserDetails userDetails =null;
 		try
 		{
-		   userDetails = dbOperations.loadUserByUsernameDbs(phoneNo);
+		   userDetails = dbOperations.loadUserByUsernameDbs(phoneNo,userType);
+					
+		}catch (Exception e ) {
+			logger.error(e.getMessage(),e);
+		}
+	
+		return userDetails;
+	}
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		UserDetails userDetails =null;
+		int underscore=username.indexOf("_");
+		String phoneNumber=username.substring(0,underscore);
+		String userType=username.substring(underscore+1,username.length());
+		try
+		{
+		   userDetails = dbOperations.loadUserByUsernameDbs(phoneNumber,userType);
 					
 		}catch (Exception e ) {
 			logger.error(e.getMessage(),e);

@@ -14,5 +14,6 @@ public interface APPLICATION_CONSTANTS {
 	public static int COMPANY_LEVEL = 12;
 	int VENDER_ID_LENGHT = 4;
 	long ORG_ID = 10000;
+	int PASSWORD_TOKEN_LENGHT = 6;
 
 }

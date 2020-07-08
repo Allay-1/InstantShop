@@ -7,7 +7,13 @@ import org.springframework.http.HttpStatus;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result {
 	
 	
@@ -18,6 +24,9 @@ public class Result {
 	   private String message;
 	   private String debugMessage;
 	   private boolean valid;
+	   @JsonIgnore
+	   private Object response;
+	   @JsonIgnore
 	   private List<BazarBalaSubError> subErrors;
 
 	
@@ -53,6 +62,14 @@ public class Result {
 	       this.status = status;
 	       this.valid = valid;
 	       this.message = message;
+	   }
+	   
+	   public Result(HttpStatus status, String message,boolean valid,Object response) {
+	       this();
+	       this.status = status;
+	       this.valid = valid;
+	       this.message = message;
+	       this.response = response;
 	   }
 	   
 	   
@@ -122,4 +139,13 @@ public class Result {
 		       this.message = message;
 		   }
 	   }
+
+	public Object getResponse() {
+		return response;
+	}
+
+	public void setResponse(Object response) {
+		this.response = response;
+	}
+	   
 }

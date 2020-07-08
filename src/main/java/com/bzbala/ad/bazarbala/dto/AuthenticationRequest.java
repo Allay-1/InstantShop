@@ -1,16 +1,27 @@
 package com.bzbala.ad.bazarbala.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AuthenticationRequest  {
 
 
     private String phoneNo;
     private String password;
+    private String userType;
 
-   
-    public String getPhoneNo() {
+    
+    public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 

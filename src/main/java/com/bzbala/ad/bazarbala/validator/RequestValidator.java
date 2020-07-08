@@ -39,6 +39,47 @@ public class RequestValidator {
 	}
 	
 	/**
+	 * Basic phone number and email id validation
+	 * @param phoneNumber
+	 * @param emailId
+	 * @return
+	 */
+	public Result validateCreateTokenRequest(String phoneNumber, String emailId, String userType) {
+		String result = null;
+		Result message = null;
+
+		if (userType != null && !userType.isEmpty()) {
+			if (!(userType.equalsIgnoreCase("Customer") || userType.equalsIgnoreCase("Supplier"))) {
+				message = new Result(HttpStatus.BAD_REQUEST, false);
+				message.setMessage("UserType is not Matching to our record its value should be Customer or Supplier ::"
+						+ userType);
+				return message;
+			}
+		} 
+		if (phoneNumber != null && !phoneNumber.isEmpty()) {
+			result = BazarbalaUtil.validatePhoneNumber(phoneNumber) ? "Success" : "fail";
+			if (result.equalsIgnoreCase("fail")) {
+				message = new Result(HttpStatus.BAD_REQUEST, false);
+				message.setMessage("Phopne number is not a valid : Please revalidate your number ::" + phoneNumber);
+				return message;
+			}
+		}
+
+		if (emailId != null && !emailId.isEmpty()) {
+			result = BazarbalaUtil.isValid(emailId) ? "Success" : "fail";
+
+			if (result.equalsIgnoreCase("fail")) {
+				message = new Result(HttpStatus.BAD_REQUEST, false);
+				message.setMessage("Email id is not a valid : Please revalidate your email id::" + emailId);
+				return message;
+			}
+		}
+		message = new Result(HttpStatus.OK, true);
+		return message;
+
+	}
+	
+	/**
 	 * 
 	 * @param createBusinessUserDTO
 	 * @return

@@ -18,6 +18,7 @@ public class AdminServicesImpl implements AdminServices {
 
 	@Autowired
 	private DBServices dbOperations;
+	
     /**
      * 
      */
@@ -56,5 +57,20 @@ public class AdminServicesImpl implements AdminServices {
 		address.setName(createBusinessUserDTO.getFirstName());
 		return dbOperations.creteCustomerUser(createBusinessUserDTO, address);
 
+	}
+
+	@Override
+	public Result createToken(String phoneNumber, String emailId,String userType) throws BazarBalaDAOException {
+		long token = BazarbalaUtil.generateRandomID(APPLICATION_CONSTANTS.PASSWORD_TOKEN_LENGHT);
+		long timeStamp = System.currentTimeMillis();
+		return dbOperations.cretePasswordToken(phoneNumber, emailId, token, timeStamp,userType);
+
+	}
+
+	@Override
+	public Result updatePassword(String token, String password) throws BazarBalaDAOException {
+		password=BazarbalaUtil.generatePwdEnc(password);
+		long timeStamp = System.currentTimeMillis();
+		return dbOperations.updatePassword(password, token, timeStamp);
 	}
 }

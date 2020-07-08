@@ -35,22 +35,28 @@ public class AuthenticationDBService {
 	}
 
 	
+   /**
+    * 
+    * @param phoneNo
+    * @param userType
+    * @return
+    */
+	public UserDetails loadUserByUsernameDbs(String phoneNo, String userType) {
 
-	public UserDetails loadUserByUsernameDbs(String phoneNo){
+		String sql = null;
+		AuthUserUserDTOMapper authUserUserDTOMapper = new AuthUserUserDTOMapper();
+		if (userType != null && !userType.isEmpty() && userType.equalsIgnoreCase("Supplier")) {
+			sql = "SELECT PHONE_NO,PWD FROM " + SCHEMA_NAME + ".BAZAR_BALA_SUPP_MST WHERE PHONE_NO=?";
 
-		
-	    String sql = "SELECT PHONE_NO,PWD FROM "+SCHEMA_NAME+".BAZAR_BALA_SUPP_MST WHERE PHONE_NO=?";
-	    
-	    AuthUserUserDTOMapper authUserUserDTOMapper = new AuthUserUserDTOMapper();
-	    jdbcTemplate.query(sql, new Object[] { phoneNo }, authUserUserDTOMapper);
-	    
-	    if(authUserUserDTOMapper != null || authUserUserDTOMapper.getAuthUserUserDTO() == null) {
-	    	 sql = "SELECT PHONE_NO,PWD FROM "+SCHEMA_NAME+".BAZAR_BALA_CUST_MST WHERE PHONE_NO=?";
-	    	jdbcTemplate.query(sql, new Object[] { phoneNo }, authUserUserDTOMapper);
-	    }
-	    
-	    return new User(authUserUserDTOMapper.getAuthUserUserDTO().getPhoneNo(), 
-	    		authUserUserDTOMapper.getAuthUserUserDTO().getPwdToAuth(),
-                new ArrayList<>());
-  	}
+			jdbcTemplate.query(sql, new Object[] { phoneNo }, authUserUserDTOMapper);
+		}
+
+		if (userType != null && !userType.isEmpty() && userType.equalsIgnoreCase("Customer")) {
+			sql = "SELECT PHONE_NO,PWD FROM " + SCHEMA_NAME + ".BAZAR_BALA_CUST_MST WHERE PHONE_NO=?";
+			jdbcTemplate.query(sql, new Object[] { phoneNo }, authUserUserDTOMapper);
+		}
+
+		return new User(authUserUserDTOMapper.getAuthUserUserDTO().getPhoneNo(),
+				authUserUserDTOMapper.getAuthUserUserDTO().getPwdToAuth(), new ArrayList<>());
+	}
 }

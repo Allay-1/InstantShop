@@ -41,16 +41,17 @@ public class ControllerHelper {
 		Result message = null;
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-					authenticationRequest.getPhoneNo(), authenticationRequest.getPassword()));
+					authenticationRequest.getPhoneNo()+"_"+authenticationRequest.getUserType(), authenticationRequest.getPassword()));
 		} catch (BadCredentialsException e) {
 			message = new Result(HttpStatus.OK, e, false);
 			message.setMessage("Token creation has failed due to technical issue but you now register customer");
 			return message;
 		}
 
-		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo());
+		final UserDetails userDetails = authenticationServiceObj.loadUserByUsername(authenticationRequest.getPhoneNo(),authenticationRequest.getUserType());
 		final String jwt = "Bearer " + jwtTokenUtil.generateToken(userDetails);
 		response.addHeader("Authorization", jwt);
+		response.addHeader("User_Type", authenticationRequest.getUserType());
 		return message;
 	}
 
