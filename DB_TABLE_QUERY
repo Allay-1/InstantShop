@@ -1,72 +1,49 @@
-===================================================================
-OLD TABlE QUERY
-===================================================================
-CREATE TABLE `BAZAR_BALA_MST` (
-  `SHOP_ID` int NOT NULL AUTO_INCREMENT,
-  `SHOP_NAME` varchar(45) DEFAULT '100',
-  `SHOP_ADDRESS` varchar(45) DEFAULT '300',
-  `ZIPCODE` int DEFAULT NULL,
-  `SHOP_IMAGE` blob,
-  `SHOP_URL` varchar(45) DEFAULT '300',
-  `SHOP_OWNER_EMAIL_ID` varchar(45) DEFAULT '300',
-  `PAYMENT_PREFERANCE` varchar(45) DEFAULT '12',
-  `PHONE_NO` varchar(255) DEFAULT NULL,
-  `SHOP_OWNER_PWD` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`SHOP_ID`),
-  UNIQUE KEY `SHOP_ID_UNIQUE` (`SHOP_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=952910 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-==================================================================
-NEW TABE QUERY Create Supplier Table 
-==================================================================
+desc bazarbala.BAZAR_BALA_CUST_MST;
 
-CREATE TABLE BAZAR_BALA_SUPP_MST (SHOP_ID int NOT NULL AUTO_INCREMENT,
-SUPPLIER_ID varchar(255) DEFAULT '100',
-ADDRESS_ID  varchar(255) DEFAULT '100',SHOP_NAME varchar(45) DEFAULT '100',
-ADDRESS varchar(45) DEFAULT '300',ZIPCODE int DEFAULT NULL,
-PHONE_NO varchar(255) DEFAULT NULL,EMAIL_ID varchar(45) DEFAULT '300',
-PWD varchar(255) DEFAULT NULL,`CATEGORY` varchar(45) DEFAULT '300',
-PRIMARY KEY (`SHOP_ID`),UNIQUE KEY `SHOP_ID_UNIQUE` (`SHOP_ID`));
+ALTER TABLE bazarbala.BAZAR_ADDRESS_MST  ADD ID varchar(45) ;
 commit;
 
-==================================================================
-QUERY Create CUSTOMER Table 
-==================================================================
-
-CREATE TABLE BAZAR_BALA_CUST_MST (HOME_ID int NOT NULL AUTO_INCREMENT,
-CUSTOMER_ID varchar(255) DEFAULT '100',
-ADDRESS_ID  varchar(255) DEFAULT '100',
-ADDRESS varchar(45) DEFAULT '300',
-ZIPCODE int DEFAULT NULL,
-FIRST_NAME varchar(45) DEFAULT '100',
-LAST_NAME varchar(45) DEFAULT '100',
-PHONE_NO varchar(255) DEFAULT NULL,
-EMAIL_ID varchar(45) DEFAULT '300',
-PWD varchar(255) DEFAULT NULL,PRIMARY KEY (`HOME_ID`),
-UNIQUE KEY `HOME_ID_UNIQUE` (`HOME_ID`)) ;
-commit;
-==================================================================
-QUERY Create ADDRESS Table 
-==================================================================
-
-CREATE TABLE BAZAR_ADDRESS_MST (ADDRESS_ID int NOT NULL AUTO_INCREMENT,
-ADDRESS varchar(45) DEFAULT '300',
-ZIPCODE int DEFAULT NULL,
-NAME varchar(45) DEFAULT '100',
-USER_TYPE varchar(45) DEFAULT '100',
-ID varchar(45) DEFAULT '100',
-PRIMARY KEY (`ADDRESS_ID`),
-UNIQUE KEY `ADDRESS_ID_UNIQUE` (`ADDRESS_ID`));
+CREATE TABLE bazarbala.BAZAR_BALA_CUST_MST 
+  (HOME_ID int NOT NULL AUTO_INCREMENT,
+   CUSTOMER_ID varchar(255) DEFAULT '100',
+   ADDRESS_ID  varchar(255) DEFAULT '100',
+   ADDRESS varchar(45) DEFAULT '300',
+   ZIPCODE int DEFAULT NULL,
+   FIRST_NAME varchar(45) DEFAULT '100',
+   LAST_NAME varchar(45) DEFAULT '100',
+   PHONE_NO varchar(255) DEFAULT NULL,
+   EMAIL_ID varchar(45) DEFAULT '300',
+   PWD varchar(255) DEFAULT NULL,
+   PRIMARY KEY (`HOME_ID`),UNIQUE KEY `HOME_ID_UNIQUE` (`HOME_ID`));
 commit;
 
-====================================================================
-Create forget password 
-====================================================================
-CREATE TABLE FORGET_PASSWORD (PHONE_NO varchar(45)  NOT NULL,
-EMAIL_ID varchar(45) DEFAULT NULL,
-TOKEN varchar(45) DEFAULT NULL,
-TIME_STAMP long DEFAULT null,
-PRIMARY KEY (PHONE_NO),
-UNIQUE KEY PHONE_NO_UNIQUE (PHONE_NO));
+
+CREATE TABLE bazarbala.BAZAR_ADDRESS_MST (`ADDRESS_ID` int NOT NULL AUTO_INCREMENT,
+         `ADDRESS` varchar(45) DEFAULT '300',`ZIPCODE` int DEFAULT NULL,
+         `NAME` varchar(45) DEFAULT '100',
+         `USER_TYPE` varchar(45) DEFAULT '100',
+		  PRIMARY KEY (`ADDRESS_ID`),
+          UNIQUE KEY `ADDRESS_ID_UNIQUE` (`ADDRESS_ID`))
+         ;
 commit;
-===================================================================================================
+
+CREATE TABLE bazarbala.BAZAR_BALA_SUPP_MST (`SHOP_ID` int NOT NULL AUTO_INCREMENT,`SUPPLIER_ID` varchar(255) DEFAULT '100',`ADDRESS_ID`  varchar(255) DEFAULT '100',`SHOP_NAME` varchar(45) DEFAULT '100',`ADDRESS` varchar(45) DEFAULT '300',`ZIPCODE` int DEFAULT NULL,`PHONE_NO` varchar(255) DEFAULT NULL,`EMAIL_ID` varchar(45) DEFAULT '300',`PWD` varchar(255) DEFAULT NULL,`CATEGORY` varchar(45) DEFAULT '300',PRIMARY KEY (`SHOP_ID`),UNIQUE KEY `SHOP_ID_UNIQUE` (`SHOP_ID`)) ENGINE=InnoDB AUTO_INCREMENT=952910 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+commit;
+
+CREATE TABLE bazarbala.bazar_bala_mst (
+  SHOP_ID int NOT NULL AUTO_INCREMENT,
+  SHOP_NAME varchar(45) DEFAULT '100',
+  SHOP_ADDRESS varchar(45) DEFAULT '300',
+  ZIPCODE int DEFAULT NULL,
+  SHOP_IMAGE blob,
+  SHOP_URL varchar(45) DEFAULT '300',
+  SHOP_OWNER_EMAIL_ID varchar(45) DEFAULT '300',
+  PAYMENT_PREFERANCE varchar(45) DEFAULT '12',
+  PHONE_NO varchar(255) DEFAULT NULL,
+  SHOP_OWNER_PWD varchar(255) DEFAULT NULL,
+  SHOP_CATEGORY varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`SHOP_ID`),
+  UNIQUE KEY `SHOP_ID_UNIQUE` (`SHOP_ID`)
+);
+
