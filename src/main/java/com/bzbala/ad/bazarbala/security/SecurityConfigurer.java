@@ -17,11 +17,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
+
 @Configuration
 @EnableWebSecurity(debug = true) 
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
-	
-	
 	
 	@Autowired
 	private UserDetailsService myUserDetailsService;
@@ -29,7 +28,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 	
-	String[] publicUrls = new String[] { "/user/authAndCreateToken","/user/signUpSupplier", "/user/signUPCustomer","/supplier/availability","/user/genrate/passwordToken","/user/genrate/password"};
+	String[] publicUrls = new String[] { "/supplier/download/*","/supplier/upload/*","/supplier/uploadProduct","/supplier/saveProduct","/supplier/getAllProduct","/supplier/getAllProduct/{supplierId}","/supplier/getAllProduct/{supplierId}/**","/destroySession","/genrateBin","/removeBin","/user/authAndCreateToken","/user/signUpSupplier", "/user/signUPCustomer","/supplier/availability","/user/genrate/passwordToken","/user/genrate/password",};
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
