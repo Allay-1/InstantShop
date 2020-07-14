@@ -205,6 +205,346 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8089/genrateBin?",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/genrateBin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"genrateBin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/removeBin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/removeBin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"removeBin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/destroySession",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/destroySession",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"destroySession"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost8089/genrateBin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost8089/genrateBin",
+					"protocol": "http",
+					"host": [
+						"localhost8089"
+					],
+					"path": [
+						"genrateBin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/genrateBin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/genrateBin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"genrateBin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/saveProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productRequest\": [\n        {\n            \"product_code\": \"potato_12345\",\n            \"name\": \"potato_12345_en podato\",\n            \"discription\": \"potato_12345_des_en Good for health with hig calory\",\n            \"supplier_id\": \"123456\",\n            \"quantity\": 5,\n            \"orgin\": \"INDIA\",\n            \"brand\": \"Vegitable\",\n            \"productImage\": 1234567,\n            \"startDate\": \"27062020\",\n            \"endDate\": \"27062030\",\n            \"govApproved\": \"Yes\",\n            \"categoryCode\": \"cat_12345\",\n            \"currencyType\": \"RS\",\n            \"sell_price\": 10,\n            \"base_price\": 5,\n            \"discountType\": \"PERCENTAGE\",\n            \"discount\": \"5\",\n            \"discountStartDate\": \"27062020\",\n            \"discountEndDate\": \"27062030\",\n            \"category_code\": \"cat_12345\",\n            \"category_name\": \"Vegitable\",\n            \"category_description\": \"Good for Health\",\n            \"categoryImageId\": 123456\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/supplier/saveProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"saveProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/getAllProduct",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/supplier/getAllProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"getAllProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/getAllProduct/123456/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8089/supplier/getAllProduct/123456/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"getAllProduct",
+						"123456",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/uploadProduct",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "productFile",
+							"type": "file",
+							"src": "/Users/amitabhsinha/Desktop/GMAT-Practice-Grid.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8089/supplier/uploadProduct",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"uploadProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/uploadFile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MjU2MjkwMDQ1IiwiZXhwIjoxNTk0NzQ2MTcyLCJpYXQiOjE1OTQ3MTAxNzJ9.h5dmjBtIPLWyzzEauA6bPVstDE1S3HKWL4x2nG0A7P0",
+						"type": "text"
+					},
+					{
+						"key": "User_Type",
+						"value": "Supplier",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/amitabhsinha/Desktop/Test.numbers"
+						},
+						{
+							"key": "supplierId",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "fileType",
+							"value": "image",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8089/supplier/uploadFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"uploadFile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/uploadMultipleFiles",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MjU2MjkwMDQ1IiwiZXhwIjoxNTk0NzQ2MTcyLCJpYXQiOjE1OTQ3MTAxNzJ9.h5dmjBtIPLWyzzEauA6bPVstDE1S3HKWL4x2nG0A7P0",
+						"type": "text"
+					},
+					{
+						"key": "User_Type",
+						"value": "Supplier",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "supplierId",
+							"value": "12345",
+							"type": "text"
+						},
+						{
+							"key": "fileType",
+							"value": "image",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [
+								"/Users/amitabhsinha/Desktop/GMAT-Practice-Grid.numbers",
+								"/Users/amitabhsinha/Desktop/GMAT-Practice-Grid.xlsx"
+							]
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8089/supplier/uploadMultipleFiles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"uploadMultipleFiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/donwnloadFile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MjU2MjkwMDQ1IiwiZXhwIjoxNTk0NzQ2MTcyLCJpYXQiOjE1OTQ3MTAxNzJ9.h5dmjBtIPLWyzzEauA6bPVstDE1S3HKWL4x2nG0A7P0",
+						"type": "text"
+					},
+					{
+						"key": "User_Type",
+						"value": "Supplier",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName\": \"GMAT-Practice-Grid.xlsx\",\n    \"supplierId\": \"12345\",\n    \"fileType\": \"image\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/supplier/donwnloadFile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"donwnloadFile"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

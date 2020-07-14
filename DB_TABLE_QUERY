@@ -47,3 +47,42 @@ CREATE TABLE bazarbala.bazar_bala_mst (
   UNIQUE KEY `SHOP_ID_UNIQUE` (`SHOP_ID`)
 );
 
+============================================================
+Four new Table
+============================================================
+Create table ProductDetail (
+productCode varchar(255),
+supplierId varchar(45),
+name varchar(255),
+categoryCode varchar(45),
+description varchar(255),
+quantityType enum( 'KG','NUMBER','LITER'),
+quantity int,
+stock varchar(45),
+origin enum('INDIA','MADE_IN_CHAINA','OTHERS'),
+brand varchar(45),
+govApproved varchar(45),
+image varchar(255),
+startDate varchar(45),
+endDate varchar(45));
+======================================================
+create table Discount (
+productCode varchar(255),
+supplierId varchar(45),
+typeOfDiscount enum('PERCENTAGE','FLATAMOUNT','QUANTITY'),
+discountStartDate varchar(45),discount varchar(45),discountEndDate varchar(45));
+================================================================================
+create table Price (productCode varchar(255),
+supplierId varchar(45),
+basePrice double,
+sellPrice double,
+currencyType enum('RS','USD','DOLLAR'));
+=====================================================
+create table Category (productCode varchar(255),
+supplierId varchar(45),
+name varchar(255),
+description varchar(255),
+imageId varchar(255));
+=========================================================
+
+
