@@ -545,6 +545,70 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/deleteProduct/cat_12345_123456 Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MjU2MjkwMDQ1IiwiZXhwIjoxNTk0ODExNDU5LCJpYXQiOjE1OTQ3NzU0NTl9.4gT6ss8KrcBf-_emSwNZ9cJn76XkzXWwC5J4wNWvAwQ:"
+					},
+					{
+						"key": "User_Type",
+						"type": "text",
+						"value": "Supplier"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8089/supplier/deleteProduct/potato_12349_123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"deleteProduct",
+						"potato_12349_123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8089/supplier/categoryDetail/cat_12345_123456",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI0MjU2MjkwMDQ1IiwiZXhwIjoxNTk0ODExNDU5LCJpYXQiOjE1OTQ3NzU0NTl9.4gT6ss8KrcBf-_emSwNZ9cJn76XkzXWwC5J4wNWvAwQ",
+						"type": "text"
+					},
+					{
+						"key": "User_Type",
+						"value": "Supplier",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8089/supplier/categoryDetail/cat_12345_123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"supplier",
+						"categoryDetail",
+						"cat_12345_123456"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}

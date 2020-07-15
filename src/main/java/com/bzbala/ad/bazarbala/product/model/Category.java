@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,8 +41,9 @@ public class Category implements Serializable {
 	@Column(name = "imageId")
 	private String imageId;
 
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<ProductDetail> productDetails;
+//	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+//	@JoinColumn(name = "categoryCode",referencedColumnName="productCode",insertable=false, updatable=false)
+//	private List<ProductDetail> productDetails;
 
 	public Category() {
 
@@ -60,9 +62,9 @@ public class Category implements Serializable {
 	}
 
 
-	public void setProductDetails(List<ProductDetail> productDetails) {
-		this.productDetails = productDetails;
-	}
+//	public void setProductDetails(List<ProductDetail> productDetails) {
+//		this.productDetails = productDetails;
+//	}
 
 
 	public String getProductCode() {
@@ -92,9 +94,9 @@ public class Category implements Serializable {
 	}
 
 
-	public List<ProductDetail> getProductDetails() {
-		return productDetails;
-	}
+//	public List<ProductDetail> getProductDetails() {
+//		return productDetails;
+//	}
 
 
 	public String getName() {

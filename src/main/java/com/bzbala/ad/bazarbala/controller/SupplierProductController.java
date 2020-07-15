@@ -121,7 +121,7 @@ public class SupplierProductController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response getProductBySupplierIDAndCategoryId(@PathVariable("CategoryCode") String categoryId) throws BazarBalaDAOException {
+	public Response getProductBySupplierIDAndCategoryId(@PathVariable("categoryId") String categoryId) throws BazarBalaDAOException {
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Category category=productService.findAllByCategoryCode(categoryId);
 		builder.status(Response.Status.OK).entity(category);

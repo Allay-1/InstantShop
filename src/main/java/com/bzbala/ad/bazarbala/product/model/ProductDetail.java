@@ -82,18 +82,18 @@ implements Serializable {
 	@Column(name="categoryCode")
 	private String categoryCode;
 	
-	@OneToOne(fetch = FetchType.LAZY,optional=false,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
 	@JoinColumn(name = "productCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Price price;
 	
-	@OneToOne(fetch = FetchType.LAZY,optional=false,cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
 	@JoinColumn(name = "productCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Discount discount;
 	
-	@ManyToOne(fetch = FetchType.LAZY,optional=false,cascade = CascadeType.ALL)
-	@JoinColumn(name = "productCode",referencedColumnName="productCode",insertable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
+	@JoinColumn(name = "categoryCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Category category;
 	
