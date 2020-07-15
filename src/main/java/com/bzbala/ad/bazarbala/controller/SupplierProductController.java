@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
 import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.validator.ProductRequestValidator;
+import com.bzbala.ad.bazarbala.product.model.Category;
 import com.bzbala.ad.bazarbala.product.model.ProductClientRequest;
-import com.bzbala.ad.bazarbala.product.model.ProductDetail;
 import com.bzbala.ad.bazarbala.product.model.ProductDetailResponse;
 import com.bzbala.ad.bazarbala.product.model.ProductRequest;
 import com.bzbala.ad.bazarbala.product.model.ProductResponse;
@@ -108,10 +108,36 @@ public class SupplierProductController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response getProductBySupplierIDAndCategoryId(@PathVariable("supplierId") String supplierId,@PathVariable("CategoryCode") String CategoryCode) throws BazarBalaDAOException {
+	public Response getProductBySupplierIDAndCategoryId(@PathVariable("supplierId") String supplierId,@PathVariable("categoryId") String CategoryCode) throws BazarBalaDAOException {
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		ProductDetailResponse productDetailResponse=productService.findAllBySupplierIdAndCategoryId(supplierId,CategoryCode);
 		builder.status(Response.Status.OK).entity(productDetailResponse);
+		return builder.build();
+		
+	}
+	
+	@CrossOrigin("/**")
+	@RequestMapping(value = "/supplier/categoryDetail/{categoryId}", method = RequestMethod.GET)
+	@ResponseBody
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public Response getProductBySupplierIDAndCategoryId(@PathVariable("CategoryCode") String categoryId) throws BazarBalaDAOException {
+		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+		Category category=productService.findAllByCategoryCode(categoryId);
+		builder.status(Response.Status.OK).entity(category);
+		return builder.build();
+		
+	}
+	
+	@CrossOrigin("/**")
+	@RequestMapping(value = "/supplier/deleteProduct/{productId}", method = RequestMethod.GET)
+	@ResponseBody
+	@Consumes(MediaType.APPLICATION_JSON_VALUE)
+	@Produces(MediaType.APPLICATION_JSON_VALUE)
+	public Response deleteProduct(@PathVariable("productId") String productId) throws BazarBalaDAOException {
+		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
+		productService.deleteByProudctId(productId);
+		builder.status(Response.Status.OK).entity("sucess");
 		return builder.build();
 		
 	}

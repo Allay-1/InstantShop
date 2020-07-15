@@ -2,10 +2,13 @@ package com.bzbala.ad.bazarbala.product.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.bzbala.ad.bazarbala.cache.BalaCache;
 import com.bzbala.ad.bazarbala.product.model.Category;
 import com.bzbala.ad.bazarbala.product.model.Discount;
 import com.bzbala.ad.bazarbala.product.model.Price;
@@ -16,7 +19,11 @@ import com.bzbala.ad.bazarbala.product.model.ProductDetailResponse;
 import com.bzbala.ad.bazarbala.product.model.Discount.Discount_Type;
 import com.bzbala.ad.bazarbala.product.model.ProductDetail.Origin;
 import com.bzbala.ad.bazarbala.product.model.ProductDetail.QuantityType;
+import com.bzbala.ad.bazarbala.repository.Helper.CategoryRepository;
 import com.bzbala.ad.bazarbala.repository.Helper.ProductDetailRepository;
+
+import io.lettuce.core.RedisCommandExecutionException;
+import io.lettuce.core.RedisException;
 
 @Service
 public class ProductService {
@@ -26,6 +33,12 @@ public class ProductService {
 	
 	@Autowired
 	ProductDetailResponse productDetailResponse;
+	
+	@Autowired
+	CategoryRepository categoryRepository;
+	
+	@Autowired
+	BalaCache balaCache;
 
 	public void createProductRequest(List<ProductClientRequest> productlistInRequest) {
 
@@ -80,12 +93,51 @@ public class ProductService {
 		return productDetailResponse;
 
 	}
+	//Dont delete this is for radis configuration 
+//	public ProductDetailResponse findAllBySupplierId(String supplierId) {
+//		List<ProductDetail> productList = new ArrayList<>();
+//		String value= null;
+//		try {
+//		balaCache.getCacheByKey(supplierId);
+//		} catch (RedisCommandExecutionException cmdEx) {
+//			 System.out.println(cmdEx);
+//	    } catch (RedisException redisException) {
+//	      System.out.println(redisException);
+//	    }
+//		
+//		if (productDetailResponse == null || productDetailResponse.getProductDetails() == null|| productDetailResponse.getProductDetails().isEmpty()) {
+//			productDetailResponse=new ProductDetailResponse();
+//			productDetailRepository.findBySupplierId(supplierId).forEach(productList::add);
+//			productDetailResponse.setProductDetails(productList);
+//			balaCache.putIntoCacheByKey(supplierId, productDetailResponse.toString());
+//		}
+//		return productDetailResponse;
+//
+//	}
 	
 	public ProductDetailResponse findAllBySupplierIdAndCategoryId(String SupplierId,String CategoryCode) {
 		List<ProductDetail> productList = new ArrayList<>();
 		productDetailRepository.findSupplierIdAndCategoryCode(SupplierId,CategoryCode).forEach(productList::add);
 		productDetailResponse.setProductDetails(productList);
 		return productDetailResponse;
+
+	}
+	
+	public Category findAllByCategoryCode(String categoryCode) {
+		
+		Optional<Category> cat=categoryRepository.findById(categoryCode);
+		if(cat.isPresent()) {
+			return cat.get();
+		}else {
+			return null;
+		}
+
+	}
+	
+    public void deleteByProudctId(String productId) {
+		
+		productDetailRepository.deleteById(productId);
+		
 
 	}
 	
