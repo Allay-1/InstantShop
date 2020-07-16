@@ -17,36 +17,28 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @Entity
 @Table(name = "Price")
 public class Price implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	
-	public enum CurrencyType {
-	    RS,
-	    USD,
-	    DOLLAR
-	  }
-	
-	@Id
-	@Column(name="productCode", nullable=false)
-	private String productCode;
-	
-	@Column(name="supplierId", nullable=false)
-	private String supplierId;
-	
-	@Column(name="basePrice")
-	private Double basePrice;
-	
-	@Column(name="sellPrice")
-	private Double sellPrice;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name="currencyType")
-	private CurrencyType currencyType;
-	
-	
-	public Price() {}
 
-	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "productCode", nullable = false)
+	private String productCode;
+
+	@Column(name = "supplierId", nullable = false)
+	private String supplierId;
+
+	@Column(name = "basePrice")
+	private Double basePrice;
+
+	@Column(name = "sellPrice")
+	private Double sellPrice;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "currencyType")
+	private CurrencyType currencyType;
+
+	public Price() {
+	}
 
 	public Price(String productCode, String supplierId, Double basePrice, Double sellPrice, CurrencyType currencyType) {
 		super();
@@ -56,8 +48,6 @@ public class Price implements Serializable {
 		this.sellPrice = sellPrice;
 		this.currencyType = currencyType;
 	}
-
-
 
 	public String getProductCode() {
 		return productCode;
@@ -75,31 +65,21 @@ public class Price implements Serializable {
 		this.supplierId = supplierId;
 	}
 
-	
-
 	public Double getBasePrice() {
 		return basePrice;
 	}
-
-
 
 	public void setBasePrice(Double basePrice) {
 		this.basePrice = basePrice;
 	}
 
-
-
 	public Double getSellPrice() {
 		return sellPrice;
 	}
 
-
-
 	public void setSellPrice(Double sellPrice) {
 		this.sellPrice = sellPrice;
 	}
-
-
 
 	public CurrencyType getCurrencyType() {
 		return currencyType;
@@ -109,6 +89,4 @@ public class Price implements Serializable {
 		this.currencyType = currencyType;
 	}
 
-	
-   
 }

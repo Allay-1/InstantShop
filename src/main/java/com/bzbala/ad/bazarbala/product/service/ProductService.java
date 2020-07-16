@@ -10,20 +10,18 @@ import org.springframework.stereotype.Service;
 
 import com.bzbala.ad.bazarbala.cache.BalaCache;
 import com.bzbala.ad.bazarbala.product.model.Category;
+import com.bzbala.ad.bazarbala.product.model.CurrencyType;
 import com.bzbala.ad.bazarbala.product.model.Discount;
+import com.bzbala.ad.bazarbala.product.model.Discount_Type;
+import com.bzbala.ad.bazarbala.product.model.Origin;
 import com.bzbala.ad.bazarbala.product.model.Price;
-import com.bzbala.ad.bazarbala.product.model.Price.CurrencyType;
 import com.bzbala.ad.bazarbala.product.model.ProductClientRequest;
 import com.bzbala.ad.bazarbala.product.model.ProductDetail;
 import com.bzbala.ad.bazarbala.product.model.ProductDetailResponse;
-import com.bzbala.ad.bazarbala.product.model.Discount.Discount_Type;
-import com.bzbala.ad.bazarbala.product.model.ProductDetail.Origin;
-import com.bzbala.ad.bazarbala.product.model.ProductDetail.QuantityType;
+import com.bzbala.ad.bazarbala.product.model.QuantityType;
 import com.bzbala.ad.bazarbala.repository.Helper.CategoryRepository;
 import com.bzbala.ad.bazarbala.repository.Helper.ProductDetailRepository;
 
-import io.lettuce.core.RedisCommandExecutionException;
-import io.lettuce.core.RedisException;
 
 @Service
 public class ProductService {

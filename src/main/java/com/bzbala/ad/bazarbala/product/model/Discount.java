@@ -19,10 +19,6 @@ public class Discount implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public enum Discount_Type {
-		PERCENTAGE, FLATAMOUNT, QUANTITY
-	}
-
 	@Id
 	@Column(name = "productCode", nullable = false)
 	private String productCode;
