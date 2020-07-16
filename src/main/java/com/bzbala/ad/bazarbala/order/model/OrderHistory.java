@@ -50,6 +50,10 @@ public class OrderHistory implements Serializable {
 	private Integer shippingTeamId;
 
 	private boolean deliveryCompleted;
+	
+    private String phoneNumber;
+	
+	private boolean isOkaytoCall;
 
 	@OneToMany(targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_FK", referencedColumnName = "orderId")
@@ -59,10 +63,12 @@ public class OrderHistory implements Serializable {
 
 	}
 
-	public OrderHistory(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
+	
+   public OrderHistory(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
 			Double taxPercentange, OrderStatus orderStatus, String orderDtail, PaymentMethod paymentMethod,
 			DeliveryMethod deliveryMethod, String shippingAddress, String zipCode, String shippingInstruction,
-			Integer shippingTeamId, boolean deliveryCompleted, List<OrderItem> orderItems) {
+			Integer shippingTeamId, boolean deliveryCompleted, String phoneNumber, boolean isOkaytoCall,
+			List<OrderItem> orderItems) {
 		super();
 		this.orderId = orderId;
 		this.supplierId = supplierId;
@@ -79,10 +85,13 @@ public class OrderHistory implements Serializable {
 		this.shippingInstruction = shippingInstruction;
 		this.shippingTeamId = shippingTeamId;
 		this.deliveryCompleted = deliveryCompleted;
+		this.phoneNumber = phoneNumber;
+		this.isOkaytoCall = isOkaytoCall;
 		this.orderItems = orderItems;
 	}
 
-	public Integer getOrderId() {
+
+    public Integer getOrderId() {
 		return orderId;
 	}
 
@@ -210,4 +219,25 @@ public class OrderHistory implements Serializable {
 		this.orderItems = orderItems;
 	}
 
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+	public boolean isOkaytoCall() {
+		return isOkaytoCall;
+	}
+
+
+	public void setOkaytoCall(boolean isOkaytoCall) {
+		this.isOkaytoCall = isOkaytoCall;
+	}
+     
+	
 }

@@ -51,6 +51,10 @@ public class CustomerOrder implements Serializable {
 	private Integer shippingTeamId;
 
 	private boolean deliveryCompleted;
+	
+	private String phoneNumber;
+	
+	private boolean isOkaytoCall;
 
 	@OneToMany(targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "order_FK", referencedColumnName = "orderId")
@@ -64,10 +68,12 @@ public class CustomerOrder implements Serializable {
 		return orderId;
 	}
 
-	public CustomerOrder(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
+	
+    public CustomerOrder(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
 			Double taxPercentange, OrderStatus orderStatus, String orderDtail, PaymentMethod paymentMethod,
 			DeliveryMethod deliveryMethod, String shippingAddress, String zipCode, String shippingInstruction,
-			Integer shippingTeamId, boolean deliveryCompleted, List<OrderItem> orderItems) {
+			Integer shippingTeamId, boolean deliveryCompleted, String phoneNumber, boolean isOkaytoCall,
+			List<OrderItem> orderItems) {
 		super();
 		this.orderId = orderId;
 		this.supplierId = supplierId;
@@ -84,6 +90,8 @@ public class CustomerOrder implements Serializable {
 		this.shippingInstruction = shippingInstruction;
 		this.shippingTeamId = shippingTeamId;
 		this.deliveryCompleted = deliveryCompleted;
+		this.phoneNumber = phoneNumber;
+		this.isOkaytoCall = isOkaytoCall;
 		this.orderItems = orderItems;
 	}
 
@@ -210,5 +218,23 @@ public class CustomerOrder implements Serializable {
 	public void setDeliveryCompleted(boolean deliveryCompleted) {
 		this.deliveryCompleted = deliveryCompleted;
 	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public boolean isOkaytoCall() {
+		return isOkaytoCall;
+	}
+
+	public void setOkaytoCall(boolean isOkaytoCall) {
+		this.isOkaytoCall = isOkaytoCall;
+	}
+	
+	
 
 }
