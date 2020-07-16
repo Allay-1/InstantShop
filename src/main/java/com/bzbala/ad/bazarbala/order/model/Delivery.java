@@ -38,14 +38,20 @@ public class Delivery implements Serializable {
 	private String shippingInstruction;
 
 	private Integer shippingTeamId;
+	
+    private String phoneNumber;
+	
+	private boolean isOkaytoCall;
 
 	public Delivery() {
 
 	}
 
+
 	public Delivery(Integer deliveryId, String customerId, String supplierId, DeliveryStatus deliveryStatus,
 			Integer orderId, String deliveryDateTime, PaymentMethod paymentMethod, DeliveryMethod deliveryMethod,
-			String shippingAddress, String shippingInstruction, Integer shippingTeamId) {
+			String shippingAddress, String shippingInstruction, Integer shippingTeamId, String phoneNumber,
+			boolean isOkaytoCall) {
 		super();
 		this.deliveryId = deliveryId;
 		this.customerId = customerId;
@@ -58,7 +64,40 @@ public class Delivery implements Serializable {
 		ShippingAddress = shippingAddress;
 		this.shippingInstruction = shippingInstruction;
 		this.shippingTeamId = shippingTeamId;
+		this.phoneNumber = phoneNumber;
+		this.isOkaytoCall = isOkaytoCall;
 	}
+
+
+
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+
+
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+
+
+
+	public boolean isOkaytoCall() {
+		return isOkaytoCall;
+	}
+
+
+
+
+	public void setOkaytoCall(boolean isOkaytoCall) {
+		this.isOkaytoCall = isOkaytoCall;
+	}
+
+
+
 
 	public Integer getDeliveryId() {
 		return deliveryId;

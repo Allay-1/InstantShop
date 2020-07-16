@@ -106,7 +106,9 @@ paymentMethod enum('NOTDEFINE','CASHONDELIVERY','PAYPAL','CREDITCARD','NETBANKIN
 deliveryMethod enum('NOTDEFINE','PICKUP','HOMEDELIVEY','SHIPPINGADDRESSDELIVERY'),
 ShippingAddress varchar(255),
 shippingInstruction varchar(255),
-shippingTeamId integer);
+shippingTeamId integer,
+phoneNumber varchar(45),
+isOkaytoCall boolean);
 ===================================================================================================
 Create table OrderHistory (
 orderId integer not null,
@@ -123,7 +125,9 @@ ShippingAddress varchar(255),
 zipCode  varchar(45),
 shippingInstruction varchar(255),
 shippingTeamId integer,
-deliveryCompleted boolean);
+deliveryCompleted boolean,
+phoneNumber varchar(45),
+isOkaytoCall boolean);
 =========================================================================================
 Create table CustomerOrder (
 orderId integer not null,
@@ -140,7 +144,8 @@ ShippingAddress varchar(255),
 zipCode  varchar(45),
 shippingInstruction varchar(255),
 shippingTeamId integer,
-deliveryCompleted boolean);
+deliveryCompleted boolean,phoneNumber varchar(45),
+isOkaytoCall boolean);
 =======================================================================================
 Create table OrderItem (
 itemId integer not null,
