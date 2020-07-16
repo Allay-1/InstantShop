@@ -106,12 +106,14 @@ public class ProductRequestValidator {
 		productRequest
 				.setDiscountType(productRequest.getDiscountType() != null && !productRequest.getDiscountType().isEmpty()
 						? productRequest.getDiscountType().trim()
-						: "PERCENTAGE");
+						: "NOTDEFINED");
 		productRequest
 				.setCurrencyType(productRequest.getCurrencyType() != null && !productRequest.getCurrencyType().isEmpty()
 						? productRequest.getCurrencyType().trim()
 						: "RS");
-
+        if(Integer.valueOf(productRequest.getDiscount())>0 && productRequest.getDiscountType().equalsIgnoreCase("NOTDEFINED")) {
+        	productRequest.setDiscountType("PERCENTAGE");
+        }
 		// End
 		message = new Result(HttpStatus.OK, true);
 		return message;

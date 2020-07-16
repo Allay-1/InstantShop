@@ -65,11 +65,21 @@ govApproved varchar(45),
 image varchar(255),
 startDate varchar(45),
 endDate varchar(45));
+=====================================================
+drop this table first and then create
+drop table Discount;
+Run the create table for discount which is given below
+TRUNCATE TABLE bazarbala.ProductDetail;
+TRUNCATE TABLE bazarbala.Price;
+TRUNCATE TABLE bazarbala.Category;
+TRUNCATE TABLE bazarbala.Discount;
+
+than go for import fresh data 
 ======================================================
 create table Discount (
 productCode varchar(255),
 supplierId varchar(45),
-typeOfDiscount enum('PERCENTAGE','FLATAMOUNT','QUANTITY'),
+typeOfDiscount enum('NOTDEFINED','PERCENTAGE','FLATAMOUNT','QUANTITY'),
 discountStartDate varchar(45),discount varchar(45),discountEndDate varchar(45));
 ================================================================================
 create table Price (productCode varchar(255),
@@ -84,5 +94,62 @@ name varchar(255),
 description varchar(255),
 imageId varchar(255));
 =========================================================
+
+Create table Delivery (
+deliveryId integer not null,
+supplierId varchar(45) not null,
+customerId varchar(45) not null,
+deliveryStatus enum('INPROGRESS','ONTHEWAY','COMPLETED','PICKUP'),
+orderId integer not null,
+deliveryDateTime varchar(45) not null,
+paymentMethod enum('NOTDEFINE','CASHONDELIVERY','PAYPAL','CREDITCARD','NETBANKING','DEBITCART'),
+deliveryMethod enum('NOTDEFINE','PICKUP','HOMEDELIVEY','SHIPPINGADDRESSDELIVERY'),
+ShippingAddress varchar(255),
+shippingInstruction varchar(255),
+shippingTeamId integer);
+===================================================================================================
+Create table OrderHistory (
+orderId integer not null,
+supplierId varchar(45) not null,
+customerId varchar(45) not null,
+orderSubTotal double not null,
+orderDate varchar(45) not null,
+orderStatus enum('INCOMPLETE','COMPLETE','SUBMITTED'),
+orderDtail varchar(255),
+taxPercentange  double not null,
+paymentMethod enum('NOTDEFINE','CASHONDELIVERY','PAYPAL','CREDITCARD','NETBANKING','DEBITCART'),
+deliveryMethod enum('NOTDEFINE','PICKUP','HOMEDELIVEY','SHIPPINGADDRESSDELIVERY'),
+ShippingAddress varchar(255),
+zipCode  varchar(45),
+shippingInstruction varchar(255),
+shippingTeamId integer,
+deliveryCompleted boolean);
+=========================================================================================
+Create table CustomerOrder (
+orderId integer not null,
+supplierId varchar(45) not null,
+customerId varchar(45) not null,
+orderSubTotal double not null,
+orderDate varchar(45) not null,
+orderStatus enum('INCOMPLETE','COMPLETE','SUBMITTED'),
+orderDtail varchar(255),
+taxPercentange  double not null,
+paymentMethod enum('NOTDEFINE','CASHONDELIVERY','PAYPAL','CREDITCARD','NETBANKING','DEBITCART'),
+deliveryMethod enum('NOTDEFINE','PICKUP','HOMEDELIVEY','SHIPPINGADDRESSDELIVERY'),
+ShippingAddress varchar(255),
+zipCode  varchar(45),
+shippingInstruction varchar(255),
+shippingTeamId integer,
+deliveryCompleted boolean);
+=======================================================================================
+Create table OrderItem (
+itemId integer not null,
+orderId integer not null,
+productCode varchar(255) not null,
+quantity integer not null,
+totalPrice double not null,
+CurrencyType enum('RS','USD','DOLLAR'),
+discount integer,
+Discount_Type enum('NOTDEFINED','PERCENTAGE','FLATAMOUNT','QUANTITY'));
 
 

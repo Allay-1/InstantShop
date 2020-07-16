@@ -25,17 +25,6 @@ public class ProductDetail
 implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	public enum QuantityType {
-	    KG,
-	    NUMBER,
-	    LITER
-	  }
-	
-	public enum Origin {
-		INDIA,
-		MADE_IN_CHAINA,
-		OTHERS
-	}
 	
 	@Id
 	@Column(name="productCode", nullable=false)
@@ -82,17 +71,17 @@ implements Serializable {
 	@Column(name="categoryCode")
 	private String categoryCode;
 	
-	@OneToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Price.class ,fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
 	@JoinColumn(name = "productCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Price price;
 	
-	@OneToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Discount.class,fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
 	@JoinColumn(name = "productCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Discount discount;
 	
-	@ManyToOne(fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Category.class ,fetch = FetchType.EAGER,optional=false,cascade = CascadeType.ALL)
 	@JoinColumn(name = "categoryCode",referencedColumnName="productCode",insertable=false, updatable=false)
 	@JoinColumn(name = "supplierId",referencedColumnName="supplierId",insertable=false, updatable=false)
 	private Category category;

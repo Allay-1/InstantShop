@@ -73,6 +73,7 @@ public class UploadSupplierProductFile {
 		ProductResponse productResponse = new ProductResponse();
 		productResponse.setProductImportFail(erroResponse);
 		productResponse.setProductImportSuccess(sucessResponse);
+		
 		builder.status(Response.Status.OK).entity(productResponse);
         }else {
         	builder.status(Response.Status.BAD_REQUEST).entity("Missing Product Request");
