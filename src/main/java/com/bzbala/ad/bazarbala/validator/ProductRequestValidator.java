@@ -12,7 +12,7 @@ import com.bzbala.ad.bazarbala.product.model.ProductClientRequest;
 @Component
 public class ProductRequestValidator {
 
-	public Result validateProductRequest(ProductClientRequest productRequest) {
+	public Result validateProductRequest(ProductClientRequest productRequest,String supplierId) {
 
 		Result message = null;
 
@@ -27,15 +27,15 @@ public class ProductRequestValidator {
 			return message;
 		}
 
-		String supplierId = productRequest.getSupplierId() != null && !productRequest.getSupplierId().isEmpty()
-				? productRequest.getSupplierId().trim()
-				: null;
-
-		if (supplierId == null) {
-			message = new Result(HttpStatus.BAD_REQUEST, false);
-			message.setMessage("Product Request Mandatory paramerter Supplier id is missing::");
-			return message;
-		}
+//		String supplierId = productRequest.getSupplierId() != null && !productRequest.getSupplierId().isEmpty()
+//				? productRequest.getSupplierId().trim()
+//				: null;
+//
+//		if (supplierId == null) {
+//			message = new Result(HttpStatus.BAD_REQUEST, false);
+//			message.setMessage("Product Request Mandatory paramerter Supplier id is missing::");
+//			return message;
+//		}
 		productRequest.setProductCode(productCode + "_" + supplierId);
 
 		List<String> errorMessages = new ArrayList<>();

@@ -6,9 +6,10 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,90 +23,99 @@ public class CustomerOrder implements Serializable {
 
 	@Id
 	@Column(name = "orderId")
-	private Integer orderId;
+	private String orderId;
 
-	private String supplierId;
-
+	@Column(name = "customerId")
 	private String customerId;
 
+	@Column(name = "orderSubTotal")
 	private Double orderSubTotal;
 
+	@Column(name = "orderDate")
 	private String orderDate;
 
+	@Column(name = "orderEndDate")
+	private String orderEndDate;
+
+	@Column(name = "lastUpdatedDate")
+	private String lastUpdatedDate;
+
+	@Column(name = "taxPercentange")
 	private Double taxPercentange;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
 
-	private String orderDtail;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "paymentMethod")
 	private PaymentMethod paymentMethod;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "deliveryMethod")
 	private DeliveryMethod deliveryMethod;
 
+	@Column(name = "ShippingAddress")
 	private String ShippingAddress;
 
+	@Column(name = "zipCode")
 	private String zipCode;
 
-	private String shippingInstruction;
 
-	private Integer shippingTeamId;
-
-	private boolean deliveryCompleted;
-	
+	@Column(name = "phoneNumber")
 	private String phoneNumber;
-	
+
+	@Column(name = "isOkaytoCall")
 	private boolean isOkaytoCall;
 
-	@OneToMany(targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_FK", referencedColumnName = "orderId")
+	// @OneToMany(targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade =
+	// CascadeType.ALL,orphanRemoval = true)
+	// @JoinColumn(name = "orderId", referencedColumnName =
+	// "orderId",insertable=false, updatable=false)
+	@OneToMany(targetEntity = OrderItem.class,mappedBy = "orderId", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<OrderItem> orderItems;
 
 	public CustomerOrder() {
 
 	}
 
-	public Integer getOrderId() {
-		return orderId;
-	}
 
-	
-    public CustomerOrder(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
-			Double taxPercentange, OrderStatus orderStatus, String orderDtail, PaymentMethod paymentMethod,
-			DeliveryMethod deliveryMethod, String shippingAddress, String zipCode, String shippingInstruction,
-			Integer shippingTeamId, boolean deliveryCompleted, String phoneNumber, boolean isOkaytoCall,
-			List<OrderItem> orderItems) {
+    
+
+	public CustomerOrder(String orderId, String customerId, Double orderSubTotal, String orderDate, String orderEndDate,
+			String lastUpdatedDate, Double taxPercentange, OrderStatus orderStatus, PaymentMethod paymentMethod,
+			DeliveryMethod deliveryMethod, String shippingAddress, String zipCode, String phoneNumber,
+			boolean isOkaytoCall, List<OrderItem> orderItems) {
 		super();
 		this.orderId = orderId;
-		this.supplierId = supplierId;
 		this.customerId = customerId;
 		this.orderSubTotal = orderSubTotal;
 		this.orderDate = orderDate;
+		this.orderEndDate = orderEndDate;
+		this.lastUpdatedDate = lastUpdatedDate;
 		this.taxPercentange = taxPercentange;
 		this.orderStatus = orderStatus;
-		this.orderDtail = orderDtail;
 		this.paymentMethod = paymentMethod;
 		this.deliveryMethod = deliveryMethod;
 		ShippingAddress = shippingAddress;
 		this.zipCode = zipCode;
-		this.shippingInstruction = shippingInstruction;
-		this.shippingTeamId = shippingTeamId;
-		this.deliveryCompleted = deliveryCompleted;
 		this.phoneNumber = phoneNumber;
 		this.isOkaytoCall = isOkaytoCall;
 		this.orderItems = orderItems;
 	}
 
-	public void setOrderId(Integer orderId) {
+
+
+
+	public String getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
-	public String getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
-	}
 
 	public String getCustomerId() {
 		return customerId;
@@ -145,14 +155,6 @@ public class CustomerOrder implements Serializable {
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public String getOrderDtail() {
-		return orderDtail;
-	}
-
-	public void setOrderDtail(String orderDtail) {
-		this.orderDtail = orderDtail;
 	}
 
 	public List<OrderItem> getOrderItems() {
@@ -195,29 +197,6 @@ public class CustomerOrder implements Serializable {
 		this.zipCode = zipCode;
 	}
 
-	public String getShippingInstruction() {
-		return shippingInstruction;
-	}
-
-	public void setShippingInstruction(String shippingInstruction) {
-		this.shippingInstruction = shippingInstruction;
-	}
-
-	public Integer getShippingTeamId() {
-		return shippingTeamId;
-	}
-
-	public void setShippingTeamId(Integer shippingTeamId) {
-		this.shippingTeamId = shippingTeamId;
-	}
-
-	public boolean isDeliveryCompleted() {
-		return deliveryCompleted;
-	}
-
-	public void setDeliveryCompleted(boolean deliveryCompleted) {
-		this.deliveryCompleted = deliveryCompleted;
-	}
 
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -234,7 +213,21 @@ public class CustomerOrder implements Serializable {
 	public void setOkaytoCall(boolean isOkaytoCall) {
 		this.isOkaytoCall = isOkaytoCall;
 	}
-	
-	
+
+	public String getOrderEndDate() {
+		return orderEndDate;
+	}
+
+	public void setOrderEndDate(String orderEndDate) {
+		this.orderEndDate = orderEndDate;
+	}
+
+	public String getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+
+	public void setLastUpdatedDate(String lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
 
 }

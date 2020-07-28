@@ -92,11 +92,9 @@ public class ProductUploadService {
 		ProductRequest productRequest = new ProductRequest();
 		uploadeProduct.stream().forEach(item ->{
 			ProductClientRequest request = new ProductClientRequest();
-			   
-			request.setProductCode(item.get("productCode"));
+			 request.setProductCode(item.get("productCode"));
 			request.setName(item.get("name"));
 			request.setDescription(item.get("description"));
-			request.setSupplierId(item.get("supplierId"));
 			request.setQuatityType(item.get("quantityType"));
 		    request.setQuantity(Integer.parseInt(item.get("quantity")));
 			request.setOrgin(item.get("orgin"));

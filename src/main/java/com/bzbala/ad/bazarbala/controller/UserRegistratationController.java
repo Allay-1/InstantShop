@@ -1,5 +1,6 @@
 package com.bzbala.ad.bazarbala.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -9,17 +10,11 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.bzbala.ad.bazarbala.dto.AuthenticationRequest;
 import com.bzbala.ad.bazarbala.dto.CreateTokenRequest;
 import com.bzbala.ad.bazarbala.dto.ForgetPassword;
@@ -47,6 +42,9 @@ public class UserRegistratationController {
 	
 	@Autowired
 	BazarbalaEmailImpl bazarbalaEmailImpl;
+	
+	@Autowired
+	AuthenticationController authenticationController;
 
 	@CrossOrigin("/**")
 	@PostMapping(value = "/user/genrate/passwordToken")
@@ -126,8 +124,8 @@ public class UserRegistratationController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response createSuplier(@RequestBody InstantShopSupplier createBusinessUserDTO,
-			HttpServletResponse response) {
+	public Response createSuplier(@RequestBody InstantShopSupplier createBusinessUserDTO,HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Result message = null;
 		message = requestValidator.validateSupplierRequest(createBusinessUserDTO);
@@ -142,10 +140,13 @@ public class UserRegistratationController {
 		}
 		if (message.isValid()) {
 			AuthenticationRequest authenticationRequest = new AuthenticationRequest();
+			String password=createBusinessUserDTO.getSupplierPassword();
+			int i=password.indexOf("@123");
+			authenticationRequest.setPassword(password.substring(0, i));
 			authenticationRequest.setPassword(createBusinessUserDTO.getSupplierPassword());
 			authenticationRequest.setPhoneNo(createBusinessUserDTO.getPhoneNnumber());
 			authenticationRequest.setUserType("Supplier");
-			controllerHelper.createToken(authenticationRequest, response);
+			authenticationController.createAuthenticationToken(authenticationRequest, request, response);
 			builder.status(Response.Status.OK).entity(message);
 			return builder.build();
 		} else {
@@ -167,8 +168,8 @@ public class UserRegistratationController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response createCustomer(@RequestBody InstantShopCustomer createBusinessUserDTO,
-			HttpServletResponse response) {
+	public Response createCustomer(@RequestBody InstantShopCustomer createBusinessUserDTO,HttpServletRequest request,
+			HttpServletResponse response) throws Exception{
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		Result message = null;
 		message = requestValidator.validateCustomerRequest(createBusinessUserDTO);
@@ -183,11 +184,12 @@ public class UserRegistratationController {
 		}
 		if (message.isValid()) {
 			AuthenticationRequest authenticationRequest = new AuthenticationRequest();
-			authenticationRequest.setPassword(createBusinessUserDTO.getCustomerPwd());
+			String password=createBusinessUserDTO.getCustomerPwd();
+			int i=password.indexOf("@123");
+			authenticationRequest.setPassword(password.substring(0, i));
 			authenticationRequest.setPhoneNo(createBusinessUserDTO.getPhoneNnumber());
 			authenticationRequest.setUserType("Customer");
-			controllerHelper.createToken(authenticationRequest, response);
-
+			authenticationController.createAuthenticationToken(authenticationRequest, request, response);
 			builder.status(Response.Status.OK).entity(message);
 			return builder.build();
 		} else {

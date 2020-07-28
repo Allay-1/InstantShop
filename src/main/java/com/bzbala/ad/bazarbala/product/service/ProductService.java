@@ -21,6 +21,7 @@ import com.bzbala.ad.bazarbala.product.model.ProductDetailResponse;
 import com.bzbala.ad.bazarbala.product.model.QuantityType;
 import com.bzbala.ad.bazarbala.repository.Helper.CategoryRepository;
 import com.bzbala.ad.bazarbala.repository.Helper.ProductDetailRepository;
+import com.bzbala.ad.bazarbala.util.BazarbalaUtil;
 
 
 @Service
@@ -38,21 +39,21 @@ public class ProductService {
 	@Autowired
 	BalaCache balaCache;
 
-	public void createProductRequest(List<ProductClientRequest> productlistInRequest) {
+	public void createProductRequest(List<ProductClientRequest> productlistInRequest,String supplierId) {
 
 		List<ProductDetail> productDetails=productlistInRequest.stream().map(item -> {
 
-			Category category = new Category(item.getCategoryCode(), item.getSupplierId(), item.getCategoryName(),
+			Category category = new Category(item.getCategoryCode(), supplierId, item.getCategoryName(),
 					item.getCategoryDescription(), item.getCategoryImageId());
 
-			Price price = new Price(item.getProductCode(), item.getSupplierId(), item.getBasePrice(),
+			Price price = new Price(item.getProductCode(), supplierId, item.getBasePrice(),
 					item.getSellPrice(), CurrencyType.valueOf(item.getCurrencyType()));
 
-			Discount discount = new Discount(item.getProductCode(), item.getSupplierId(),
+			Discount discount = new Discount(item.getProductCode(), supplierId,
 					Discount_Type.valueOf(item.getDiscountType()), item.getDiscount(), item.getDiscountStartDate(),
 					item.getDiscountEndDate());
 
-			ProductDetail productDetail = new ProductDetail(item.getProductCode(), item.getSupplierId(),
+			ProductDetail productDetail = new ProductDetail(item.getProductCode(), supplierId,
 					item.getName(), item.getDescription(), QuantityType.valueOf(item.getQuatityType()),
 					item.getQuantity(), item.getQuantity() != null && item.getQuantity() > 0 ? "True" : "False",
 					Origin.valueOf(item.getOrgin()), item.getBrand(), item.getGovApproved(), item.getProductImage(),
@@ -87,6 +88,7 @@ public class ProductService {
 	public ProductDetailResponse findAllBySupplierId(String SupplierId) {
 		List<ProductDetail> productList = new ArrayList<>();
 		productDetailRepository.findBySupplierId(SupplierId).forEach(productList::add);
+		//BazarbalaUtil.getProductList(productList);
 		productDetailResponse.setProductDetails(productList);
 		return productDetailResponse;
 
@@ -116,6 +118,7 @@ public class ProductService {
 	public ProductDetailResponse findAllBySupplierIdAndCategoryId(String SupplierId,String CategoryCode) {
 		List<ProductDetail> productList = new ArrayList<>();
 		productDetailRepository.findSupplierIdAndCategoryCode(SupplierId,CategoryCode).forEach(productList::add);
+		BazarbalaUtil.getProductList(productList);
 		productDetailResponse.setProductDetails(productList);
 		return productDetailResponse;
 

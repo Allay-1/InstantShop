@@ -23,6 +23,7 @@ import com.bzbala.ad.bazarbala.dto.PhoneAndEmail;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
 import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.model.UserReposistory;
+import com.bzbala.ad.bazarbala.util.BazarbalaUtil;
 
 import java.util.*;
 
@@ -34,6 +35,7 @@ public class DBServices {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	private static final String SCHEMA_NAME="bazarbala";
+	
 	
 	@Autowired
     DataSource dataSource;
@@ -313,6 +315,27 @@ public class DBServices {
 		return message;
 	}
 	
+	public Integer updateNextOrderNo(String customerId, boolean isUpdate)
+			throws BazarBalaDAOException {
+
+		Integer NEXTORDERNO;
+		try {
+
+			Long l = BazarbalaUtil.generateRandomID(12);
+			NEXTORDERNO = l.intValue();
+			if (isUpdate) {
+				dataSource.getConnection().setAutoCommit(false);
+				String updateSql = "UPDATE bazarbala.BAZAR_BALA_CUST_MST SET NEXTORDERNO = ? WHERE CUSTOMER_ID =?";
+
+				jdbcTemplate.update(updateSql, new Object[] { NEXTORDERNO, customerId});
+			}
+		} catch (Exception e) {
+			logger.info("Error while retrive the Customer unknown exception {}" + e);
+			throw new BazarBalaDAOException(e.getMessage(), e.getLocalizedMessage());
+		}
+		return NEXTORDERNO;
+	}
+	
 	/**
 	 * Fetching the data from database and mapping to the UserReposistory
 	 * @param zipCode
@@ -365,14 +388,14 @@ public class DBServices {
 		if(!message.isValid()) {
 			return message;
 		}
-		
+		Integer nextOrder=updateNextOrderNo(null,false);
 		try {
 			dataSource.getConnection().setAutoCommit(false);
 			int count = 0;
 
 			String sql = "INSERT INTO " + SCHEMA_NAME
-					+ ".BAZAR_BALA_CUST_MST(HOME_ID, CUSTOMER_ID,ADDRESS_ID,ADDRESS,ZIPCODE,FIRST_NAME,LAST_NAME,PHONE_NO,EMAIL_ID,PWD)\n"
-					+ " VALUES (?,?,?,?,?,?,?,?,?,?)";
+					+ ".BAZAR_BALA_CUST_MST(HOME_ID, CUSTOMER_ID,ADDRESS_ID,ADDRESS,ZIPCODE,FIRST_NAME,LAST_NAME,PHONE_NO,EMAIL_ID,PWD,NEXTORDERNO)\n"
+					+ " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 			count = jdbcTemplate.update(new PreparedStatementCreator() {
 
@@ -391,6 +414,7 @@ public class DBServices {
 					ps.setString(8, createBusinessUserDTO.getPhoneNnumber());
 					ps.setString(9, createBusinessUserDTO.getEmailId());
 					ps.setString(10, createBusinessUserDTO.getCustomerPwd());
+					ps.setInt(11, nextOrder);
 					
 					return ps;
 				}

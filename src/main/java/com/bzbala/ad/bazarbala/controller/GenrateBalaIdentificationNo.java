@@ -1,12 +1,8 @@
 package com.bzbala.ad.bazarbala.controller;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-
-import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bzbala.ad.bazarbala.exception.Result;
+import com.bzbala.ad.bazarbala.util.BazarbalaUtil;
 
 @Controller
 public class GenrateBalaIdentificationNo {
@@ -35,6 +32,7 @@ public class GenrateBalaIdentificationNo {
 		Result message = null;
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		String cokieName = "BIN";
+		String generatedString = null;
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (int i = 0; i < cookies.length; i++) {
@@ -49,8 +47,9 @@ public class GenrateBalaIdentificationNo {
 		}
 		if (!isCookieAvailable) {
 			
-			String generatedString = RandomStringUtils.randomAlphanumeric(16);
+			
 		//	request.getSession().setAttribute("MY_SESSION_MESSAGES", generatedString);
+			generatedString=String.valueOf(BazarbalaUtil.generateRandomID(16));
 			Cookie binCookie = new Cookie("BIN", generatedString);
 			binCookie.setMaxAge(30 * 60);
 			response.addCookie(binCookie);

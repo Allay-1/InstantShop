@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.bzbala.ad.bazarbala.dao.PersonalInfo;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
 import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.validator.ProductRequestValidator;
@@ -44,17 +50,20 @@ public class SupplierProductController {
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response saveProduct(@RequestBody ProductRequest productRequest) throws BazarBalaDAOException {
+	public Response saveProduct(@RequestBody ProductRequest productRequest,HttpServletRequest request,
+			HttpServletResponse response) throws BazarBalaDAOException {
 
 		ResponseBuilder builder = Response.status(Response.Status.BAD_REQUEST);
 		List<ProductClientRequest> productlistInRequest = new ArrayList<>();
 
 		Map<String, String> sucessResponse = new HashMap<>();
 		Map<String, String> erroResponse = new HashMap<>();
+		HttpSession session = request.getSession(true);
+		PersonalInfo personalInfo=(PersonalInfo) session.getAttribute("PersonaInfo");
         if(productRequest.getProductRequest() != null) {
 		productRequest.getProductRequest().stream().forEach(item -> {
 
-			Result validatorResult = requestValidator.validateProductRequest(item);
+			Result validatorResult = requestValidator.validateProductRequest(item,personalInfo.getPersonalId());
 			if (validatorResult.isValid()) {
 				productlistInRequest.add(item);
 				sucessResponse.put(item.getProductCode(), "Success");
@@ -64,8 +73,8 @@ public class SupplierProductController {
 
 			}
 		});
-
-		productService.createProductRequest(productlistInRequest);
+		
+		productService.createProductRequest(productlistInRequest,personalInfo.getPersonalId());
 		ProductResponse productResponse = new ProductResponse();
 		productResponse.setProductImportFail(erroResponse);
 		productResponse.setProductImportSuccess(sucessResponse);
@@ -78,7 +87,7 @@ public class SupplierProductController {
 	}
 	
 	@CrossOrigin("/**")
-	@RequestMapping(value = "/supplier/getAllProduct", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/getAllProduct", method = RequestMethod.GET)
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
@@ -91,7 +100,7 @@ public class SupplierProductController {
 	}
 	
 	@CrossOrigin("/**")
-	@RequestMapping(value = "/supplier/getAllProduct/{supplierId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/getSupplierProduct/{supplierId}", method = RequestMethod.GET)
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
@@ -104,7 +113,7 @@ public class SupplierProductController {
 	}
 	
 	@CrossOrigin("/**")
-	@RequestMapping(value = "/supplier/getAllProduct/{supplierId}/{categoryId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/product/getSupplierCategory/{supplierId}/{categoryId}", method = RequestMethod.GET)
 	@ResponseBody
 	@Consumes(MediaType.APPLICATION_JSON_VALUE)
 	@Produces(MediaType.APPLICATION_JSON_VALUE)

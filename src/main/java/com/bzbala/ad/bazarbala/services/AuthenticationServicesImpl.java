@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import com.bzbala.ad.bazarbala.dao.AuthenticationDBService;
+import com.bzbala.ad.bazarbala.dao.PersonalInfo;
 
 
 @Service
@@ -33,18 +34,31 @@ public class AuthenticationServicesImpl implements AuthenticationService, UserDe
 		
 	}
 	@Override
-	public UserDetails loadUserByUsername(String phoneNo,String userType) throws UsernameNotFoundException {
-		UserDetails userDetails =null;
-		try
-		{
-		   userDetails = dbOperations.loadUserByUsernameDbs(phoneNo,userType);
-					
-		}catch (Exception e ) {
-			logger.error(e.getMessage(),e);
+	public PersonalInfo loadUserByUsername(String phoneNo, String userType,boolean isSaveRequer) throws UsernameNotFoundException {
+
+		try {
+			return dbOperations.loadUserByUsernameDbs(phoneNo, userType,isSaveRequer);
+
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
 		}
-	
-		return userDetails;
+
+		return null;
 	}
+	
+//	@Override
+//	public void saveCurentOrderByUsername(String phoneNo,String userType) throws UsernameNotFoundException {
+//		
+//		try
+//		{
+//		   dbOperations.saveCurentOrderByUsername(phoneNo,userType);
+//					
+//		}catch (Exception e ) {
+//			logger.error(e.getMessage(),e);
+//		}
+//	
+//		
+//	}
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetails userDetails =null;
@@ -53,7 +67,8 @@ public class AuthenticationServicesImpl implements AuthenticationService, UserDe
 		String userType=username.substring(underscore+1,username.length());
 		try
 		{
-		   userDetails = dbOperations.loadUserByUsernameDbs(phoneNumber,userType);
+		   PersonalInfo personalInfo=dbOperations.loadUserByUsernameDbs(phoneNumber,userType,false);
+		   userDetails = personalInfo.getUserDetail();
 					
 		}catch (Exception e ) {
 			logger.error(e.getMessage(),e);

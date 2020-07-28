@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,90 +23,82 @@ public class OrderHistory implements Serializable {
 
 	@Id
 	@Column(name = "orderId")
-	private Integer orderId;
+	private String orderId;
 
-	private String supplierId;
-
+	@Column(name = "customerId")
 	private String customerId;
 
+	@Column(name = "orderSubTotal")
 	private Double orderSubTotal;
 
+	@Column(name = "orderDate")
 	private String orderDate;
 
-	private Double taxPercentange;
-
+	@Enumerated(EnumType.STRING)
+	@Column(name = "orderStatus")
 	private OrderStatus orderStatus;
 
-	private String orderDtail;
-
+	@Enumerated(EnumType.STRING)
+	@Column(name = "paymentMethod")
 	private PaymentMethod paymentMethod;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "deliveryMethod")
 	private DeliveryMethod deliveryMethod;
 
-	private String ShippingAddress;
+	@Column(name = "taxPercentange")
+	private Double taxPercentange;
 
-	private String zipCode;
-
-	private String shippingInstruction;
-
-	private Integer shippingTeamId;
-
+	@Column(name = "deliveryCompleted")
 	private boolean deliveryCompleted;
-	
-    private String phoneNumber;
-	
+
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
+
+	@Column(name = "isOkaytoCall")
 	private boolean isOkaytoCall;
 
-	@OneToMany(targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "order_FK", referencedColumnName = "orderId")
-	private List<OrderItem> orderItems;
+	@Column(name = "zipCode")
+	private String zipCode;
+	
+	@Column(name = "ShippingAddress")
+	private String ShippingAddress;
 
 	public OrderHistory() {
 
 	}
 
+	@OneToMany(targetEntity = OrderHistoryItem.class, mappedBy = "orderId", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<OrderHistoryItem> orderItems;
+
 	
-   public OrderHistory(Integer orderId, String supplierId, String customerId, Double orderSubTotal, String orderDate,
-			Double taxPercentange, OrderStatus orderStatus, String orderDtail, PaymentMethod paymentMethod,
-			DeliveryMethod deliveryMethod, String shippingAddress, String zipCode, String shippingInstruction,
-			Integer shippingTeamId, boolean deliveryCompleted, String phoneNumber, boolean isOkaytoCall,
-			List<OrderItem> orderItems) {
+  public OrderHistory(String orderId, String customerId, Double orderSubTotal, String orderDate,
+			OrderStatus orderStatus, PaymentMethod paymentMethod, DeliveryMethod deliveryMethod, Double taxPercentange,
+			boolean deliveryCompleted, String phoneNumber, boolean isOkaytoCall, String zipCode, String shippingAddress,
+			List<OrderHistoryItem> orderItems) {
 		super();
 		this.orderId = orderId;
-		this.supplierId = supplierId;
 		this.customerId = customerId;
 		this.orderSubTotal = orderSubTotal;
 		this.orderDate = orderDate;
-		this.taxPercentange = taxPercentange;
 		this.orderStatus = orderStatus;
-		this.orderDtail = orderDtail;
 		this.paymentMethod = paymentMethod;
 		this.deliveryMethod = deliveryMethod;
-		ShippingAddress = shippingAddress;
-		this.zipCode = zipCode;
-		this.shippingInstruction = shippingInstruction;
-		this.shippingTeamId = shippingTeamId;
+		this.taxPercentange = taxPercentange;
 		this.deliveryCompleted = deliveryCompleted;
 		this.phoneNumber = phoneNumber;
 		this.isOkaytoCall = isOkaytoCall;
+		this.zipCode = zipCode;
+		ShippingAddress = shippingAddress;
 		this.orderItems = orderItems;
 	}
 
-
-    public Integer getOrderId() {
+	public String getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(String orderId) {
 		this.orderId = orderId;
-	}
-
-	public String getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
 	}
 
 	public String getCustomerId() {
@@ -131,28 +125,12 @@ public class OrderHistory implements Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public Double getTaxPercentange() {
-		return taxPercentange;
-	}
-
-	public void setTaxPercentange(Double taxPercentange) {
-		this.taxPercentange = taxPercentange;
-	}
-
 	public OrderStatus getOrderStatus() {
 		return orderStatus;
 	}
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
-	}
-
-	public String getOrderDtail() {
-		return orderDtail;
-	}
-
-	public void setOrderDtail(String orderDtail) {
-		this.orderDtail = orderDtail;
 	}
 
 	public PaymentMethod getPaymentMethod() {
@@ -171,36 +149,12 @@ public class OrderHistory implements Serializable {
 		this.deliveryMethod = deliveryMethod;
 	}
 
-	public String getShippingAddress() {
-		return ShippingAddress;
+	public Double getTaxPercentange() {
+		return taxPercentange;
 	}
 
-	public void setShippingAddress(String shippingAddress) {
-		ShippingAddress = shippingAddress;
-	}
-
-	public String getZipCode() {
-		return zipCode;
-	}
-
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-
-	public String getShippingInstruction() {
-		return shippingInstruction;
-	}
-
-	public void setShippingInstruction(String shippingInstruction) {
-		this.shippingInstruction = shippingInstruction;
-	}
-
-	public Integer getShippingTeamId() {
-		return shippingTeamId;
-	}
-
-	public void setShippingTeamId(Integer shippingTeamId) {
-		this.shippingTeamId = shippingTeamId;
+	public void setTaxPercentange(Double taxPercentange) {
+		this.taxPercentange = taxPercentange;
 	}
 
 	public boolean isDeliveryCompleted() {
@@ -211,33 +165,46 @@ public class OrderHistory implements Serializable {
 		this.deliveryCompleted = deliveryCompleted;
 	}
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
-
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
-
 	public boolean isOkaytoCall() {
 		return isOkaytoCall;
 	}
 
-
 	public void setOkaytoCall(boolean isOkaytoCall) {
 		this.isOkaytoCall = isOkaytoCall;
 	}
-     
+
+	public String getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+
+	public List<OrderHistoryItem> getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(List<OrderHistoryItem> orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	public String getShippingAddress() {
+		return ShippingAddress;
+	}
+
+	public void setShippingAddress(String shippingAddress) {
+		ShippingAddress = shippingAddress;
+	}
 	
+	
+
 }

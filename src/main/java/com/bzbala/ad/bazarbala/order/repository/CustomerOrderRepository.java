@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.bzbala.ad.bazarbala.order.model.CustomerOrder;
 
-public interface OrderRepository extends CrudRepository<CustomerOrder, Integer>{
+public interface CustomerOrderRepository extends CrudRepository<CustomerOrder, String>{
 
 }

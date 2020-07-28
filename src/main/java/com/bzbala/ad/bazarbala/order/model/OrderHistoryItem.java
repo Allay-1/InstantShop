@@ -2,20 +2,27 @@ package com.bzbala.ad.bazarbala.order.model;
 
 import java.io.Serializable;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import com.bzbala.ad.bazarbala.product.model.CurrencyType;
+import com.bzbala.ad.bazarbala.product.model.DeliveryStatus;
 import com.bzbala.ad.bazarbala.product.model.Discount_Type;
+import com.bzbala.ad.bazarbala.product.model.Price;
 
 @Entity
-@Table(name = "OrderItem")
-public class OrderItem implements Serializable {
+@Table(name = "OrderHistoryItem")
+public class OrderHistoryItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -33,7 +40,7 @@ public class OrderItem implements Serializable {
 
 	@Column(name = "quantity")
 	private Integer quantity;
-    
+
 	@Column(name = "totalPrice")
 	private Double totalPrice;
 
@@ -54,18 +61,34 @@ public class OrderItem implements Serializable {
 	@Column(name = "supplierId")
 	private String supplierId;
 
-	// @ManyToOne(targetEntity = CustomerOrder.class,fetch = FetchType.EAGER)
-	// @JoinColumn(name = "orderId",referencedColumnName="orderId",insertable=false,
-	// updatable=false)
-	// private CustomerOrder customerOrder;
+	@Column(name = "customerId")
+	private String customerId;
 
-	public OrderItem() {
+	@Column(name = "deliveryCompleted")
+	private boolean deliveryCompleted;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "deliveryStatus")
+	private DeliveryStatus deliveryStatus;
+
+	@Column(name = "deliveryDateTime")
+	private String deliveryDateTime;
+
+	@Column(name = "shippingTeamId")
+	private Integer shippingTeamId;
+
+	
+	public OrderHistoryItem() {
 
 	}
 
-	public OrderItem(int id, String orderId, String productCode, String productName, Integer quantity,
+	
+   
+
+	public OrderHistoryItem(int id, String orderId, String productCode, String productName, Integer quantity,
 			Double totalPrice, CurrencyType currencyType, Integer discount, Double sellPrice,
-			Discount_Type discountType, String supplierId) {
+			Discount_Type discountType, String supplierId, String customerId, boolean deliveryCompleted,
+			DeliveryStatus deliveryStatus, String deliveryDateTime, Integer shippingTeamId) {
 		super();
 		this.id = id;
 		this.orderId = orderId;
@@ -78,31 +101,57 @@ public class OrderItem implements Serializable {
 		this.sellPrice = sellPrice;
 		this.discountType = discountType;
 		this.supplierId = supplierId;
+		this.customerId = customerId;
+		this.deliveryCompleted = deliveryCompleted;
+		this.deliveryStatus = deliveryStatus;
+		this.deliveryDateTime = deliveryDateTime;
+		this.shippingTeamId = shippingTeamId;
 	}
 
-	public String getProductName() {
-		return productName;
+
+
+
+	public DeliveryStatus getDeliveryStatus() {
+		return deliveryStatus;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+
+
+
+	public void setDeliveryStatus(DeliveryStatus deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 
-	public String getSupplierId() {
-		return supplierId;
+
+
+
+	public String getDeliveryDateTime() {
+		return deliveryDateTime;
 	}
 
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
+
+
+
+	public void setDeliveryDateTime(String deliveryDateTime) {
+		this.deliveryDateTime = deliveryDateTime;
 	}
 
-	public Double getSellPrice() {
-		return sellPrice;
+
+
+
+	public Integer getShippingTeamId() {
+		return shippingTeamId;
 	}
 
-	public void setSellPrice(Double sellPrice) {
-		this.sellPrice = sellPrice;
+
+
+
+	public void setShippingTeamId(Integer shippingTeamId) {
+		this.shippingTeamId = shippingTeamId;
 	}
+
+
+
 
 	public int getId() {
 		return id;
@@ -126,6 +175,14 @@ public class OrderItem implements Serializable {
 
 	public void setProductCode(String productCode) {
 		this.productCode = productCode;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public Integer getQuantity() {
@@ -160,6 +217,14 @@ public class OrderItem implements Serializable {
 		this.discount = discount;
 	}
 
+	public Double getSellPrice() {
+		return sellPrice;
+	}
+
+	public void setSellPrice(Double sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
 	public Discount_Type getDiscountType() {
 		return discountType;
 	}
@@ -167,5 +232,30 @@ public class OrderItem implements Serializable {
 	public void setDiscountType(Discount_Type discountType) {
 		this.discountType = discountType;
 	}
+
+	public String getSupplierId() {
+		return supplierId;
+	}
+
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
+	public boolean isDeliveryCompleted() {
+		return deliveryCompleted;
+	}
+
+	public void setDeliveryCompleted(boolean deliveryCompleted) {
+		this.deliveryCompleted = deliveryCompleted;
+	}
+
 
 }

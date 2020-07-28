@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.bzbala.ad.bazarbala.dao.PersonalInfo;
 import com.bzbala.ad.bazarbala.exception.BazarBalaDAOException;
 import com.bzbala.ad.bazarbala.exception.Result;
 import com.bzbala.ad.bazarbala.product.model.ProductClientRequest;
@@ -42,10 +46,11 @@ public class UploadSupplierProductFile {
 	ProductService productService;
 	
 	@CrossOrigin("/**")
-	@RequestMapping(value = "/supplier/uploadProduct", method = RequestMethod.POST, consumes = {"multipart/form-data"})
+	@RequestMapping(value = "/supplier/uploadProduct", method = RequestMethod.POST, consumes ={"multipart/form-data"})
 	@ResponseBody
 	@Produces(MediaType.APPLICATION_JSON_VALUE)
-	public Response uploadProduct(@RequestParam("productFile") MultipartFile productFile) throws BazarBalaDAOException {
+	public Response uploadProduct(@RequestParam("productFile") MultipartFile productFile,HttpServletRequest request,
+			HttpServletResponse response) throws BazarBalaDAOException {
 		
 		List<Map<String, String>> listOfProduct=productUploadService.uploadProductFile(productFile);
 		ProductRequest productRequest=productUploadService.getProductRequest(listOfProduct);
@@ -55,10 +60,12 @@ public class UploadSupplierProductFile {
 
 		Map<String, String> sucessResponse = new HashMap<>();
 		Map<String, String> erroResponse = new HashMap<>();
+		HttpSession session = request.getSession(true);
+		PersonalInfo personalInfo=(PersonalInfo) session.getAttribute("PersonaInfo");
         if(productRequest.getProductRequest() != null) {
 		productRequest.getProductRequest().stream().forEach(item -> {
 
-			Result validatorResult = requestValidator.validateProductRequest(item);
+			Result validatorResult = requestValidator.validateProductRequest(item,personalInfo.getPersonalId());
 			if (validatorResult.isValid()) {
 				productlistInRequest.add(item);
 				sucessResponse.put(item.getProductCode(), "Success");
@@ -68,8 +75,7 @@ public class UploadSupplierProductFile {
 
 			}
 		});
-
-		productService.createProductRequest(productlistInRequest);
+		productService.createProductRequest(productlistInRequest,personalInfo.getPersonalId());
 		ProductResponse productResponse = new ProductResponse();
 		productResponse.setProductImportFail(erroResponse);
 		productResponse.setProductImportSuccess(sucessResponse);

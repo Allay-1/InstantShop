@@ -1,126 +1,76 @@
 package com.bzbala.ad.bazarbala.order.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import com.bzbala.ad.bazarbala.product.model.DeliveryStatus;
 
 @Entity
-@Table(name = "OrderItem")
+@Table(name = "Delivery")
 public class Delivery implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "deliveryId")
-	private Integer deliveryId;
+	int id;
+	
+	@Column(name = "orderId")
+	private String orderId;
 
-	private String customerId;
-
-	private String supplierId;
-
+	@Enumerated(EnumType.STRING)
+	@Column(name = "deliveryStatus")
 	private DeliveryStatus deliveryStatus;
 
-	private Integer orderId;
-
+	@Column(name = "deliveryDateTime")
 	private String deliveryDateTime;
 
-	private PaymentMethod paymentMethod;
-
-	private DeliveryMethod deliveryMethod;
-
-	private String ShippingAddress;
-
-	private String shippingInstruction;
-
+	@Column(name = "shippingTeamId")
 	private Integer shippingTeamId;
-	
-    private String phoneNumber;
-	
-	private boolean isOkaytoCall;
 
 	public Delivery() {
 
 	}
 
+	
+    
 
-	public Delivery(Integer deliveryId, String customerId, String supplierId, DeliveryStatus deliveryStatus,
-			Integer orderId, String deliveryDateTime, PaymentMethod paymentMethod, DeliveryMethod deliveryMethod,
-			String shippingAddress, String shippingInstruction, Integer shippingTeamId, String phoneNumber,
-			boolean isOkaytoCall) {
+	public Delivery(int id, String orderId, DeliveryStatus deliveryStatus, String deliveryDateTime,
+			Integer shippingTeamId) {
 		super();
-		this.deliveryId = deliveryId;
-		this.customerId = customerId;
-		this.supplierId = supplierId;
-		this.deliveryStatus = deliveryStatus;
+		this.id = id;
 		this.orderId = orderId;
+		this.deliveryStatus = deliveryStatus;
 		this.deliveryDateTime = deliveryDateTime;
-		this.paymentMethod = paymentMethod;
-		this.deliveryMethod = deliveryMethod;
-		ShippingAddress = shippingAddress;
-		this.shippingInstruction = shippingInstruction;
 		this.shippingTeamId = shippingTeamId;
-		this.phoneNumber = phoneNumber;
-		this.isOkaytoCall = isOkaytoCall;
 	}
 
 
 
 
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public int getId() {
+		return id;
 	}
 
 
 
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
 
 
-	public boolean isOkaytoCall() {
-		return isOkaytoCall;
+	public String getOrderId() {
+		return orderId;
 	}
 
-
-
-
-	public void setOkaytoCall(boolean isOkaytoCall) {
-		this.isOkaytoCall = isOkaytoCall;
-	}
-
-
-
-
-	public Integer getDeliveryId() {
-		return deliveryId;
-	}
-
-	public void setDeliveryId(Integer deliveryId) {
-		this.deliveryId = deliveryId;
-	}
-
-	public String getCustomerId() {
-		return customerId;
-	}
-
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
-
-	public String getSupplierId() {
-		return supplierId;
-	}
-
-	public void setSupplierId(String supplierId) {
-		this.supplierId = supplierId;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 	public DeliveryStatus getDeliveryStatus() {
@@ -131,52 +81,12 @@ public class Delivery implements Serializable {
 		this.deliveryStatus = deliveryStatus;
 	}
 
-	public Integer getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(Integer orderId) {
-		this.orderId = orderId;
-	}
-
 	public String getDeliveryDateTime() {
 		return deliveryDateTime;
 	}
 
 	public void setDeliveryDateTime(String deliveryDateTime) {
 		this.deliveryDateTime = deliveryDateTime;
-	}
-
-	public PaymentMethod getPaymentMethod() {
-		return paymentMethod;
-	}
-
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-
-	public DeliveryMethod getDeliveryMethod() {
-		return deliveryMethod;
-	}
-
-	public void setDeliveryMethod(DeliveryMethod deliveryMethod) {
-		this.deliveryMethod = deliveryMethod;
-	}
-
-	public String getShippingAddress() {
-		return ShippingAddress;
-	}
-
-	public void setShippingAddress(String shippingAddress) {
-		ShippingAddress = shippingAddress;
-	}
-
-	public String getShippingInstruction() {
-		return shippingInstruction;
-	}
-
-	public void setShippingInstruction(String shippingInstruction) {
-		this.shippingInstruction = shippingInstruction;
 	}
 
 	public Integer getShippingTeamId() {

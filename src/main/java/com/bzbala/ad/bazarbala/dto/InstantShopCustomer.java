@@ -17,6 +17,9 @@ public class InstantShopCustomer {
 	private String phoneNnumber; // PHONE_NO
 	private String emailId; // SHOP_OWNER_EMAIL_ID
 	private String customerPwd; // SHOP_OWNER_PWD
+	private String state;
+	
+	
 	public Long getCustomerId() {
 		return customerId;
 	}
@@ -80,6 +83,12 @@ public class InstantShopCustomer {
 	}
 	public void setHomeId(Long homeId) {
 		this.homeId = homeId;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	
